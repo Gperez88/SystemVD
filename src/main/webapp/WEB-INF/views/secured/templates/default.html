@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <title>Lumino - Dashboard</title>
+
+    <link href="/resources/css/bootstrap.min.css" rel="stylesheet"/>
+    <link href="/resources/css/datepicker3.css" rel="stylesheet"/>
+    <link href="/resources/css/styles.css" rel="stylesheet"/>
+
+    <!--Icons-->
+    <script src="/resources/js/lumino.glyphs.js"></script>
+
+    <!--[if lt IE 9]>
+    <script src="/resources/js/html5shiv.min.js"></script>
+    <script src="/resources/js/respond.min.js"></script>
+    <![endif]-->
+
+</head>
+
+<body>
+
+<div th:replace="secured/templates/fragments/header :: header"/>
+
+<div th:replace="secured/templates/fragments/sidebar :: sidebar"/>
+
+<div th:replace="${view} :: content"/>
+
+<script src="/resources/js/jquery-1.11.1.min.js"></script>
+<script src="/resources/js/bootstrap.min.js"></script>
+<script src="/resources/js/chart.min.js"></script>
+<script src="/resources/js/easypiechart.js"></script>
+<script src="/resources/js/easypiechart-data.js"></script>
+<script src="/resources/js/bootstrap-datepicker.js"></script>
+<script src="/resources/js/app.js"></script>
+<div th:if="${script != null}">
+    <script th:src="${script}"></script>
+</div>
+</body>
+
+</html>
