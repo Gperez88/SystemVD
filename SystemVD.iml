@@ -23,6 +23,16 @@
         </sourceRoots>
       </configuration>
     </facet>
+    <facet type="jpa" name="JPA">
+      <configuration>
+        <setting name="validation-enabled" value="true" />
+        <setting name="provider-name" value="" />
+        <datasource-mapping>
+          <factory-entry name="persistenceUnit" value="ba547ba1-edff-405d-b110-549af7325257" />
+        </datasource-mapping>
+        <deploymentDescriptor name="persistence.xml" url="file://$MODULE_DIR$/src/main/resources/META-INF/persistence.xml" />
+      </configuration>
+    </facet>
   </component>
   <component name="NewModuleRootManager" LANGUAGE_LEVEL="JDK_1_8" inherit-compiler-output="false">
     <output url="file://$MODULE_DIR$/target/classes" />
@@ -69,9 +79,6 @@
     <orderEntry type="library" name="Maven: org.springframework:spring-expression:4.2.5.RELEASE" level="project" />
     <orderEntry type="library" name="Maven: org.springframework.boot:spring-boot-starter-thymeleaf:1.3.3.RELEASE" level="project" />
     <orderEntry type="library" name="Maven: org.thymeleaf:thymeleaf-spring4:2.1.4.RELEASE" level="project" />
-    <orderEntry type="library" name="Maven: org.thymeleaf:thymeleaf:2.1.4.RELEASE" level="project" />
-    <orderEntry type="library" name="Maven: ognl:ognl:3.0.8" level="project" />
-    <orderEntry type="library" name="Maven: org.unbescape:unbescape:1.1.0.RELEASE" level="project" />
     <orderEntry type="library" name="Maven: nz.net.ultraq.thymeleaf:thymeleaf-layout-dialect:1.3.3" level="project" />
     <orderEntry type="library" name="Maven: org.codehaus.groovy:groovy:2.4.6" level="project" />
     <orderEntry type="library" name="Maven: org.springframework.boot:spring-boot-starter-web:1.3.3.RELEASE" level="project" />
@@ -84,6 +91,11 @@
     <orderEntry type="library" name="Maven: com.fasterxml.jackson.core:jackson-core:2.6.5" level="project" />
     <orderEntry type="library" name="Maven: org.springframework:spring-web:4.2.5.RELEASE" level="project" />
     <orderEntry type="library" name="Maven: org.springframework:spring-webmvc:4.2.5.RELEASE" level="project" />
+    <orderEntry type="library" name="Maven: org.thymeleaf.extras:thymeleaf-extras-springsecurity4:2.1.2.RELEASE" level="project" />
+    <orderEntry type="library" name="Maven: org.thymeleaf:thymeleaf:2.1.4.RELEASE" level="project" />
+    <orderEntry type="library" name="Maven: ognl:ognl:3.0.8" level="project" />
+    <orderEntry type="library" name="Maven: org.unbescape:unbescape:1.1.0.RELEASE" level="project" />
+    <orderEntry type="library" name="Maven: org.slf4j:slf4j-api:1.7.16" level="project" />
     <orderEntry type="library" scope="RUNTIME" name="Maven: mysql:mysql-connector-java:5.1.38" level="project" />
     <orderEntry type="library" scope="PROVIDED" name="Maven: org.springframework.boot:spring-boot-starter-tomcat:1.3.3.RELEASE" level="project" />
     <orderEntry type="library" scope="PROVIDED" name="Maven: org.apache.tomcat.embed:tomcat-embed-core:8.0.32" level="project" />
@@ -115,7 +127,6 @@
     <orderEntry type="library" name="Maven: commons-beanutils:commons-beanutils:1.9.2" level="project" />
     <orderEntry type="library" name="Maven: commons-collections:commons-collections:3.2.2" level="project" />
     <orderEntry type="library" name="Maven: org.apache.commons:commons-lang3:3.2.1" level="project" />
-    <orderEntry type="library" name="Maven: org.slf4j:slf4j-api:1.7.16" level="project" />
     <orderEntry type="library" name="Maven: org.slf4j:jcl-over-slf4j:1.7.16" level="project" />
   </component>
 </module>

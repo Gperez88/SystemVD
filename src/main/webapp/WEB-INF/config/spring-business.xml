@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-       xmlns:p="http://www.springframework.org/schema/p" xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:context="http://www.springframework.org/schema/context"
        xmlns:tx="http://www.springframework.org/schema/tx"
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
 		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd
@@ -8,7 +8,7 @@
 
     <import resource="spring-datasource.xml"/>
 
-    <context:component-scan base-package="com.perezmejia.systemvd.service"/>
+    <context:component-scan base-package="com.perezmejia.systemvd.service, com.perezmejia.systemvd.repository"/>
 
     <context:property-placeholder location="classpath:/application.properties"/>
 
@@ -20,22 +20,16 @@
     <!-- **************************************************************** -->
     <!--  EntityManagerFactory                                            -->
     <!-- **************************************************************** -->
-    <!--<bean class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean" id="entityManagerFactory">-->
-    <!--<property name="persistenceUnitName" value="persistenceUnit"/>-->
-    <!--<property name="dataSource" ref="dataSource"/>-->
-    <!--</bean>-->
+    <bean id="entityManagerFactory" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
+        <property name="persistenceUnitName" value="persistenceUnit"/>
+        <property name="dataSource" ref="dataSource"/>
+    </bean>
 
     <!-- **************************************************************** -->
     <!--  Transaction Manager                                             -->
     <!-- **************************************************************** -->
-    <!--<bean class="org.springframework.orm.jpa.JpaTransactionManager" id="transactionManager">-->
-    <!--<property name="entityManagerFactory" ref="entityManagerFactory"/>-->
-    <!--</bean>-->
-    <bean id="transactionManagerSystemVD" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
-        <property name="dataSource" ref="dataSource"/>
-        <qualifier value="txApp"/>
+    <bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager">
+        <property name="entityManagerFactory" ref="entityManagerFactory"/>
     </bean>
-
-    <context:component-scan base-package="com.perezmejia.systemvd.repository"/>
 
 </beans>
