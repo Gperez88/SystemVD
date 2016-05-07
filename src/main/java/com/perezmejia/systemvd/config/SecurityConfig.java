@@ -23,11 +23,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Autowired
     public UserDetailsService userDetailsService;
 
-//    @Override
-//    public void configure(WebSecurity builder) throws Exception {
-//        builder.ignoring()
-//                .antMatchers("/static/**", "/templates/**");
-//    }
+    @Override
+    public void configure(WebSecurity builder) throws Exception {
+        builder.ignoring()
+                .antMatchers("/static/**", "/templates/**");
+    }
 
     @Override
     public void configure(AuthenticationManagerBuilder auth) throws Exception {
@@ -53,10 +53,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .and()
                 .exceptionHandling().accessDeniedPage("/403")
                 .and()
-                .sessionManagement().sessionFixation().migrateSession();
-
-//        .and()
-//                .csrf()
+                .sessionManagement().sessionFixation().migrateSession()
+                .and()
+                .csrf();
     }
+
 
 }

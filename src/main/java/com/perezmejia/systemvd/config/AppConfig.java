@@ -1,16 +1,11 @@
 package com.perezmejia.systemvd.config;
 
 import com.perezmejia.systemvd.config.template.ThymeleafLayoutInterceptor;
-import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
-import org.springframework.boot.autoconfigure.thymeleaf.ThymeleafAutoConfiguration;
-import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.MessageSource;
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.support.ReloadableResourceBundleMessageSource;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
-import org.springframework.transaction.annotation.EnableTransactionManagement;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 import org.thymeleaf.dialect.IDialect;
@@ -25,7 +20,6 @@ import java.util.Set;
 /**
  * Created by Guil on 5/3/2016.
  */
-
 @Configuration
 @EnableJpaRepositories
 public class AppConfig extends WebMvcConfigurerAdapter {
