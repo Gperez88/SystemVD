@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head lang="es">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+</head>
+<body>
+<div id="sidebar-collapse" class="col-sm-3 col-lg-2 sidebar" th:fragment="sidebar">
+    <ul class="nav menu">
+        <li id="nav-menu-li-index">
+            <a href="/inicio">
+                <i class="fa fa-dashboard" aria-hidden="true"></i>
+                <span th:text="#{menu.home}">Inicio</span>
+            </a>
+        </li>
+        <li class="parent ">
+            <a data-toggle="collapse" href="#sub-item-1">
+                <i class="fa fa-shopping-cart" aria-hidden="true"></i>
+                <span th:text="#{menu.sale}">Venta</span>
+                <span class="fa fa-chevron-down"></span>
+            </a>
+            <ul class="children collapse" id="sub-item-1">
+                <li id="nav-menu-li-sale-sell">
+                    <a class="" href="/venta/vender">
+                        <i class="fa fa-usd" aria-hidden="true"></i>
+                        <span th:text="#{menu.sale.sell}">Vender</span>
+                    </a>
+                </li>
+                <li id="nav-menu-li-sale-query">
+                    <a class="" href="/venta/consultar">
+                        <i class="fa fa-list-alt" aria-hidden="true"></i>
+                        <span th:text="#{menu.sale.query}">Consultar</span>
+                    </a>
+                </li>
+            </ul>
+        </li>
+        <li id="nav-menu-li-clients">
+            <a href="/clientes">
+                <i class="fa fa-user" aria-hidden="true"></i>
+                <span th:text="#{menu.clients}">Clientes</span>
+            </a>
+        </li>
+        <li id="nav-menu-li-providers">
+            <a href="/provedores">
+                <i class="fa fa-truck" aria-hidden="true"></i>
+                <span th:text="#{menu.providers}">Provedores</span>
+            </a>
+        </li>
+        <li class="parent ">
+            <a data-toggle="collapse" href="#sub-item-2">
+                <i class="fa fa-cog" aria-hidden="true"></i>
+                <span th:text="#{menu.administration}">Administración</span>
+                <span class="fa fa-chevron-down"></span>
+            </a>
+            <ul class="children collapse" id="sub-item-2">
+                <li id="nav-menu-li-inventory-warehouses">
+                    <a class="" href="/inventario/almacenes">
+                        <i class="fa fa-industry" aria-hidden="true"></i>
+                        <span th:text="#{menu.administration.warehouses}">Almacenes</span>
+                    </a>
+                </li>
+                <li id="nav-menu-li-inventory-products">
+                    <a class="" href="/inventario/productos">
+                        <i class="fa fa-archive" aria-hidden="true"></i>
+                        <span th:text="#{menu.administration.products}">Productos</span>
+                    </a>
+                </li>
+                <li id="nav-menu-li-inventory-categories">
+                    <a class="" href="/inventario/categorias">
+                        <i class="fa fa-tags" aria-hidden="true"></i>
+                        <span th:text="#{menu.administration.categories}">Categorias</span>
+                    </a>
+                </li>
+            </ul>
+        </li>
+    </ul>
+
+</div><!--/.sidebar-->
+</body>
+</html>

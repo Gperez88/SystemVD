@@ -9,12 +9,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
  */
 
 @Controller
-public class IndexController {
+public class CategoryController {
 
-    @Script("/static/js/views/index.js")
-    @RequestMapping("/inicio")
-    public String index() {
-        return "/secured/index";
+    @Script("/static/js/views/categories/query.js")
+    @RequestMapping("/inventario/categorias")
+    public String query() {
+        return "secured/inventory/categories/query";
     }
 
 }

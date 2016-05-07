@@ -9,12 +9,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
  */
 
 @Controller
-public class IndexController {
+public class ProviderController {
 
-    @Script("/static/js/views/index.js")
-    @RequestMapping("/inicio")
-    public String index() {
-        return "/secured/index";
+    @Script("/static/js/views/providers/query.js")
+    @RequestMapping("/provedores")
+    public String query() {
+        return "secured/providers/query";
     }
 
 }
