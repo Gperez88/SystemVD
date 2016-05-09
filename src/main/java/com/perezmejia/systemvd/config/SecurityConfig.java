@@ -1,6 +1,6 @@
 package com.perezmejia.systemvd.config;
 
-import com.perezmejia.systemvd.service.CustomUserDetailsService;
+import com.perezmejia.systemvd.service.security.CustomUserDetailsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;

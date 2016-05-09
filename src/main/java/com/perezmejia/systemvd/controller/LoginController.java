@@ -14,12 +14,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 public class LoginController {
 
     @Layout("blank")
-    @RequestMapping({"/", "/login"})
-    public String login(@RequestParam(value = "error", required = false) String error,
-                        @RequestParam(value = "logout", required = false) String logout, Model model) {
+    @RequestMapping({"/","/login"})
+    public String login(@RequestParam(value = "error", required = false) String error, Model model) {
 
         model.addAttribute("loginError", error != null);
-        model.addAttribute("logoutMessage", logout != null);
 
         return "login";
     }

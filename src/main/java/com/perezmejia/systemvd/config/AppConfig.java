@@ -3,10 +3,16 @@ package com.perezmejia.systemvd.config;
 import com.perezmejia.systemvd.config.template.ThymeleafLayoutInterceptor;
 import org.springframework.context.MessageSource;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Primary;
 import org.springframework.context.support.ReloadableResourceBundleMessageSource;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
+import org.springframework.validation.Validator;
+import org.springframework.validation.beanvalidation.LocalValidatorFactoryBean;
+import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
+import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 import org.thymeleaf.dialect.IDialect;
 import org.thymeleaf.extras.springsecurity4.dialect.SpringSecurityDialect;
@@ -21,8 +27,15 @@ import java.util.Set;
  * Created by Guil on 5/3/2016.
  */
 @Configuration
-@EnableJpaRepositories
+@EnableWebMvc
+@ComponentScan
 public class AppConfig extends WebMvcConfigurerAdapter {
+
+    @Override
+    public void addResourceHandlers(ResourceHandlerRegistry registry) {
+        registry.addResourceHandler("/static/**").addResourceLocations("/static/");
+    }
+
     /******************************************************************
      * THYMELEAF-SPECIFIC ARTIFACTS
      * TemplateResolver <- TemplateEngine <- ViewResolver
@@ -33,7 +46,7 @@ public class AppConfig extends WebMvcConfigurerAdapter {
         templateResolver.setPrefix("/WEB-INF/views/");
         templateResolver.setSuffix(".html");
         templateResolver.setTemplateMode("HTML5");
-        templateResolver.setCacheable(true);
+        templateResolver.setCacheable(false);
         return templateResolver;
     }
 
@@ -56,12 +69,12 @@ public class AppConfig extends WebMvcConfigurerAdapter {
         return viewResolver;
     }
 
-    /*********************************************************************************************
-     * ThymeleafLayoutInterceptor gets the original view name returned from the handler's method
-     * and replaces it with the layout name.
-     *********************************************************************************************/
+    /**********************************************************************
+     * add ThymeleafLayoutInterceptor and LoginPageRedirectInterceptor
+     **********************************************************************/
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
+        // registry.addInterceptor(new LoginPageRedirectInterceptor());
         registry.addInterceptor(new ThymeleafLayoutInterceptor());
     }
 
@@ -76,4 +89,23 @@ public class AppConfig extends WebMvcConfigurerAdapter {
         messageSource.setDefaultEncoding("UTF-8");
         return messageSource;
     }
+
+
+    /******************************************************************
+     * Enabled Bean Validator
+     *****************************************************************/
+//    @Bean(name = "validator")
+//    @Primary
+//    public LocalValidatorFactoryBean getLocalValidatorFactoryBean() {
+//        LocalValidatorFactoryBean validatorFactoryBean = new LocalValidatorFactoryBean();
+//        validatorFactoryBean.setValidationMessageSource(getMessageSource());
+//        return validatorFactoryBean;
+//    }
+//
+//    @Override
+//    @Primary
+//    public Validator getValidator() {
+//        return getLocalValidatorFactoryBean();
+//    }
+
 }

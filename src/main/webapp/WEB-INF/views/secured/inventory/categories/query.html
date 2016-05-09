@@ -18,11 +18,63 @@
 
     <div class="row">
         <div class="col-lg-12">
-            <h1 class="page-header">Categorias</h1>
+            <h1 class="page-header">
+                <i class="fa fa-tags"></i>
+                Categorias
+            </h1>
+        </div>
+    </div><!--/.row-->
+
+    <div class="row margin-bottom7">
+        <div class="col-lg-12">
+            <a href="/inventario/categorias/agregar" class="btn btn-primary pull-right">
+                <span>Nueva Categoria</span>
+            </a>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="panel panel-default">
+                <div class="panel-body" th:if="${#lists.isEmpty(categories)}">
+                    <span>not Esta llena</span>
+                </div>
+                <div class="panel-body" th:if="${not #lists.isEmpty(categories)}">
+                    <table data-toggle="table" data-locale="es-ES" data-pagination="true" data-sort-name="name" data-sort-order="desc">
+                        <thead>
+                        <tr>
+                            <th data-field="id" data-sortable="true"><span th:text="#{global.id}">ID</span></th>
+                            <th data-field="name" data-sortable="true"><span th:text="#{global.name}">Nombre</span></th>
+                            <th data-field="description" data-sortable="true"><span th:text="#{global.description}">Descripción</span></th>
+                            <th data-field="create-date" data-sortable="true"><span th:text="#{global.create-date}">Creado En</span></th>
+                            <th data-field="modify-date" data-sortable="true"><span th:text="#{global.modify-date}">Modificado En</span></th>
+                            <th><span th:text="#{global.action}">Acción</span></th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr th:each="category : ${categories}">
+                            <td th:text="${category.id}"></td>
+                            <td th:text="${category.name}"></td>
+                            <td th:text="${category.description}"></td>
+                            <td th:text="${#calendars.format(category.createDate,'dd/MM/yyyy hh:mm a')}"></td>
+                            <td th:text="${#calendars.format(category.modifyDate,'dd/MM/yyyy hh:mm a')}"></td>
+                            <td>
+                                <a type="button" class="btn btn-sm btn-info"
+                                   th:href="@{/inventario/categorias/editar(id=${category.id})}">
+                                    <i class="fa fa-edit"></i>
+                                </a>
+                                <a type="button" class="btn btn-sm btn-danger">
+                                    <i class="fa fa-trash"></i>
+                                </a>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
         </div>
     </div><!--/.row-->
 
 </div><!--/.main-->
-
 </body>
 </html>

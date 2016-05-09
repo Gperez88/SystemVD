@@ -280,17 +280,30 @@ a.bg-success:hover {
     color: rgba(255, 255, 255, .75);
 }
 
-.bg-info {
+.bg-notice {
     color: #fff;
     background-color: #30a5ff;
 }
 
-a.bg-info:hover {
+a.bg-notice:hover {
     background-color: #30a5ff;
 }
 
-.bg-info a {
+.bg-notice a {
     color: rgba(255, 255, 255, .75);
+}
+
+.bg-info {
+    color: #31708f;
+    background-color: #d9edf7;
+}
+
+a.bg-info:hover {
+    background-color: #d9edf7;
+}
+
+.bg-info a {
+    color: rgba(49, 112, 143, 0.75);
 }
 
 .bg-warning {
@@ -1044,6 +1057,21 @@ h1.page-header {
 .text-blue {
     color: #30a5ff;
 }
+
+/* margin */
+.margin-top5 { margin-top:5px !important; }
+.margin-top7 { margin-top:7px !important; }
+.margin-top10 { margin-top:10px !important; }
+.margin-top15 { margin-top:15px !important; }
+.margin-top17 { margin-top:17px !important; }
+.margin-top30 { margin-top:30px !important; }
+
+.margin-bottom5 { margin-bottom:5px !important; }
+.margin-bottom7 { margin-bottom:7px !important; }
+.margin-bottom10 { margin-bottom:10px !important; }
+.margin-bottom15 { margin-bottom:15px !important; }
+.margin-bottom17 { margin-bottom:17px !important; }
+.margin-bottom30 { margin-bottom:30px !important; }
 
 
 

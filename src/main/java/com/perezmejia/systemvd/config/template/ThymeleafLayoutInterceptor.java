@@ -16,6 +16,7 @@ public class ThymeleafLayoutInterceptor extends HandlerInterceptorAdapter {
 
     private static final String BLANK_TEMPLATE = "blank";
     private static final String DEFAULT_TEMPLATE = "/templates/default";
+    private static final String TABLE_TEMPLATE = "/templates/table";
     private static final String DEFAULT_VIEW_ATTRIBUTE_NAME = "view";
     private static final String DEFAULT_SCRIPT_ATTRIBUTE_NAME = "script";
 
@@ -67,10 +68,12 @@ public class ThymeleafLayoutInterceptor extends HandlerInterceptorAdapter {
     private String getLayoutName(Object handler) {
         HandlerMethod handlerMethod = (HandlerMethod) handler;
         Layout layout = getMethodOrTypeAnnotation(handlerMethod, Layout.class);
-        if (layout == null) {
+        if (layout == null || DEFAULT_TEMPLATE.contains(layout.value())) {
             return this.defaultTemplate;
         } else if (layout.value().equals(BLANK_TEMPLATE)) {
             return null;
+        } else if (TABLE_TEMPLATE.contains(layout.value())) {
+            return TABLE_TEMPLATE;
         } else {
             return layout.value();
         }

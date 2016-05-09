@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:th="http://www.thymeleaf.org">
+      xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
 <head lang="es">
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
@@ -47,7 +47,7 @@
                 <span th:text="#{menu.providers}">Provedores</span>
             </a>
         </li>
-        <li class="parent ">
+        <li class="parent " sec:authorize="hasRole('ROLE_ADMIN')">
             <a data-toggle="collapse" href="#sub-item-2">
                 <i class="fa fa-cog" aria-hidden="true"></i>
                 <span th:text="#{menu.administration}">Administración</span>

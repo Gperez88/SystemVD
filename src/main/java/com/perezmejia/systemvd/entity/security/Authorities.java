@@ -1,4 +1,4 @@
-package com.perezmejia.systemvd.domain;
+package com.perezmejia.systemvd.entity.security;
 
 /**
  * Created by Guil on 5/1/2016.

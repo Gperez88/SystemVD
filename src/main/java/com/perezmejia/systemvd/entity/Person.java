@@ -1,4 +1,4 @@
-package com.perezmejia.systemvd.domain;
+package com.perezmejia.systemvd.entity;
 
 import javax.persistence.*;
 import java.sql.Date;
@@ -15,7 +15,6 @@ public class Person {
     private Date birthdate;
     private String sex;
     private String email;
-    private User user;
 
     @Id
     @Column(name = "id")
@@ -77,16 +76,6 @@ public class Person {
         this.email = email;
     }
 
-    @OneToOne
-    @JoinColumn(name = "user_id")
-    public User getUser() {
-        return user;
-    }
-
-    public void setUser(User user) {
-        this.user = user;
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -100,7 +89,6 @@ public class Person {
         if (birthdate != null ? !birthdate.equals(that.birthdate) : that.birthdate != null) return false;
         if (sex != null ? !sex.equals(that.sex) : that.sex != null) return false;
         if (email != null ? !email.equals(that.email) : that.email != null) return false;
-        if (user != that.user) return false;
 
         return true;
     }
@@ -113,7 +101,6 @@ public class Person {
         result = 31 * result + (birthdate != null ? birthdate.hashCode() : 0);
         result = 31 * result + (sex != null ? sex.hashCode() : 0);
         result = 31 * result + (email != null ? email.hashCode() : 0);
-        result = 31 * result + (user != null ? user.hashCode() : 0);
         return result;
     }
 

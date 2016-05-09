@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Categorias</title>
+</head>
+<body>
+
+<div class="col-sm-9 col-sm-offset-3 col-lg-10 col-lg-offset-2 main" th:fragment="content">
+    <div class="row">
+        <ol class="breadcrumb">
+            <li><a href="inicio">
+                <i class="fa fa-home" aria-hidden="true"></i>
+            </a></li>
+            <li>
+                <a href="/inventario/categorias">
+                    <span th:text="#{breadcrumb.client}">Clientes</span>
+                </a>
+            </li>
+            <li class="active">
+                <span th:text="${breadcrumb}"></span>
+            </li>
+        </ol>
+    </div><!--/.row-->
+
+    <div class="row">
+        <div class="col-lg-12">
+            <h1 class="page-header">
+                <span th:text="${title}"></span>
+            </h1>
+        </div>
+    </div><!--/.row-->
+
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <span th:text="#{page.category.add.data-category}">Datos Categoría</span>
+                </div>
+                <div class="panel-body">
+                    <div class="col-md-6">
+                        <form role="form" action="#" th:action="@{/inventario/categorias/nueva}"
+                              th:object="${clientView}" method="post">
+
+                            <div class="form-group">
+                                <label>
+                                    <span th:text="#{global.name}">Nombre</span>
+                                </label>
+                                <input class="form-control" th:field="*{person.firstName}"/>
+
+                                <div th:if="${#fields.hasErrors('person.firstName')}" th:errors="*{person.firstName}">Name Error</div>
+                            </div>
+
+                            <!--<div class="form-group">-->
+                                <!--<label>-->
+                                    <!--<span th:text="#{global.description}">Descripción</span>-->
+                                <!--</label>-->
+                                <!--<textarea class="form-control" th:field="*{description}"  rows="3"></textarea>-->
+
+                                <!--<div th:if="${#fields.hasErrors('description')}" th:errors="*{description}">Description-->
+                                    <!--Error-->
+                                <!--</div>-->
+                            <!--</div>-->
+
+                            <button type="submit" class="btn btn-primary">
+                                <span th:text="#{global.save}">Guardar</span>
+                            </button>
+                            <a type="button" href="/inventario/categorias" class="btn btn-default">
+                                <span th:text="#{global.cancel}">Cancelar</span>
+                            </a>
+
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div><!-- /.col-->
+    </div><!-- /.row -->
+
+</div>
+</body>
+</html>

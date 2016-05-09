@@ -12,13 +12,56 @@
             <li><a href="inicio">
                 <i class="fa fa-home" aria-hidden="true"></i>
             </a></li>
-            <li class="active">Productos</li>
+            <li class="active">
+                <span th:text="#{breadcrumb.products}">Productos</span>
+            </li>
         </ol>
     </div><!--/.row-->
 
     <div class="row">
         <div class="col-lg-12">
-            <h1 class="page-header">Productos</h1>
+            <h1 class="page-header">
+                <i class="fa fa-archive"></i>
+                <span th:text="#{page.product.query.title}">Productos</span>
+            </h1>
+        </div>
+    </div><!--/.row-->
+
+    <div class="row margin-bottom7">
+        <div class="col-lg-12">
+            <a href="/inventario/productos/nuevo" class="btn btn-primary pull-right">
+                <span th:text="#{page.product.query.buttom.new}">Nuevo Producto</span>
+            </a>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <table data-toggle="table">
+                        <thead>
+                        <tr>
+                            <th>Item ID</th>
+                            <th>Item Name</th>
+                            <th>Item Price</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td>1</td>
+                            <td>Item 1</td>
+                            <td>$1</td>
+                        </tr>
+                        <tr>
+                            <td>2</td>
+                            <td>Item 2</td>
+                            <td>$2</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
         </div>
     </div><!--/.row-->
 

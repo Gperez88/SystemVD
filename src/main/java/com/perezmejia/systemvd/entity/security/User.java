@@ -1,4 +1,6 @@
-package com.perezmejia.systemvd.domain;
+package com.perezmejia.systemvd.entity.security;
+
+import com.perezmejia.systemvd.entity.Person;
 
 import javax.persistence.*;
 import java.sql.Timestamp;
@@ -9,7 +11,6 @@ import java.util.List;
  */
 @Entity
 @Table(name = "user", schema = "systemvd")
-//@NamedQuery(name = "byUserName", query = "select u from User u inner join u.person where u.userName = :userName")
 public class User {
     private int id;
     private String userName;
@@ -100,8 +101,8 @@ public class User {
         this.authorities = authorities;
     }
 
-    @OneToOne(mappedBy = "user")
-    @JoinColumn(name = "user_id")
+    @OneToOne
+    @JoinColumn(name = "person_id")
     public Person getPerson() {
         return person;
     }
@@ -125,6 +126,7 @@ public class User {
         if (modifyDate != null ? !modifyDate.equals(that.modifyDate) : that.modifyDate != null) return false;
         if (tracking != null ? !tracking.equals(that.tracking) : that.tracking != null) return false;
         if (authorities != null ? !authorities.equals(authorities) : that.authorities != null) return false;
+        if (person != null ? !person.equals(that.person) : that.person != null) return false;
 
         return true;
     }
@@ -139,6 +141,7 @@ public class User {
         result = 31 * result + (modifyDate != null ? modifyDate.hashCode() : 0);
         result = 31 * result + tracking;
         result = 31 * result + (authorities != null ? authorities.hashCode() : 0);
+        result = 31 * result + (person != null ? person.hashCode() : 0);
         return result;
     }
 }

@@ -1,9 +1,12 @@
-package com.perezmejia.systemvd.service;
+package com.perezmejia.systemvd.service.security;
 
-import com.perezmejia.systemvd.domain.Authorities;
-import com.perezmejia.systemvd.domain.User;
-import com.perezmejia.systemvd.domain.UserSecurity;
-import com.perezmejia.systemvd.repository.UserRepository;
+import com.perezmejia.systemvd.entity.security.Authorities;
+import com.perezmejia.systemvd.entity.security.User;
+import com.perezmejia.systemvd.helper.mapperobject.Mapper;
+import com.perezmejia.systemvd.helper.mapperobject.MapperObject;
+import com.perezmejia.systemvd.view.security.CustomUserDetails;
+import com.perezmejia.systemvd.view.security.UserView;
+import com.perezmejia.systemvd.repository.security.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -26,6 +29,7 @@ import java.util.Set;
 public class CustomUserDetailsService implements UserDetailsService {
 
     private final UserRepository userRepository;
+    private final Mapper mapper = MapperObject.getInstance();
 
     @Autowired
     public CustomUserDetailsService(UserRepository userRepository) {
@@ -39,24 +43,20 @@ public class CustomUserDetailsService implements UserDetailsService {
         User user = userRepository.findByUserName(userName);
         List<GrantedAuthority> authorities = buildUserAuthority(user.getAuthorities());
 
-        return buildUserForAuthentication(user, authorities);
+        UserView userView = mapper.map(user, UserView.class);
+        return buildUserForAuthentication(userView, authorities);
     }
 
-    private UserSecurity buildUserForAuthentication(User user, List<GrantedAuthority> authorities) {
-        return new UserSecurity(user, authorities);
+    private CustomUserDetails buildUserForAuthentication(UserView userView, List<GrantedAuthority> authorities) {
+        return new CustomUserDetails(userView, authorities);
     }
 
     private List<GrantedAuthority> buildUserAuthority(List<Authorities> authorities) {
 
-        Set<GrantedAuthority> setAuths = new HashSet<GrantedAuthority>();
+        Set<GrantedAuthority> setAuths = new HashSet<>();
 
-        // Build user's authorities
-        authorities.forEach(authority -> {
-            setAuths.add(new SimpleGrantedAuthority(authority.getAuthority().getAuthority()));
-        });
+        authorities.forEach(authority -> setAuths.add(new SimpleGrantedAuthority(authority.getAuthority().getAuthority())));
 
-        List<GrantedAuthority> Result = new ArrayList<GrantedAuthority>(setAuths);
-
-        return Result;
+        return new ArrayList<>(setAuths);
     }
 }
