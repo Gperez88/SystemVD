@@ -68,7 +68,6 @@ public class CategoryController {
         return FORM_VIEW_PATH;
     }
 
-
     @Script("/static/js/views/categories/query.js")
     @RequestMapping(value = {ADD_PATH, EDIT_PATH}, method = RequestMethod.POST)
     public String save(@ModelAttribute("categoryView") @Valid CategoryView categoryView, BindingResult bindingResult) {

@@ -29,8 +29,8 @@
 
     <div class="row margin-bottom7">
         <div class="col-lg-12">
-            <a href="/inventario/productos/nuevo" class="btn btn-primary pull-right">
-                <span th:text="#{page.product.query.buttom.new}">Nuevo Producto</span>
+            <a href="/inventario/productos/agregar" class="btn btn-primary pull-right">
+                <span th:text="#{page.product.action.add}">Agregar Producto</span>
             </a>
         </div>
     </div>
@@ -38,25 +38,44 @@
     <div class="row">
         <div class="col-lg-12">
             <div class="panel panel-default">
-                <div class="panel-body">
-                    <table data-toggle="table">
+                <div class="alert bg-info" role="alert"  th:if="${#lists.isEmpty(products)}">
+                    <i class="fa fa-info-circle fa-lg" aria-hidden="true"></i>
+                    <span th:text="#{page.product.no-data-message}"></span> <b th:text="#{page.product.action.add}"></b>
+                </div>
+                <div class="panel-body" th:if="${not #lists.isEmpty(products)}">
+                    <table data-toggle="table" data-locale="es-ES" data-pagination="true" data-sort-name="name" data-sort-order="desc">
                         <thead>
                         <tr>
-                            <th>Item ID</th>
-                            <th>Item Name</th>
-                            <th>Item Price</th>
+                            <th data-field="id" data-sortable="true"><span th:text="#{global.id}">ID</span></th>
+                            <th data-field="name" data-sortable="true"><span th:text="#{global.name}">Nombre</span></th>
+                            <th data-field="description" data-sortable="true"><span th:text="#{global.description}">Descripción</span></th>
+                            <th data-field="inventory-min" data-sortable="true"><span th:text="#{global.inventory-min}">Minino En Inventario</span></th>
+                            <th data-field="price" data-sortable="true"><span th:text="#{global.price}">Precio</span></th>
+                            <th data-field="catogory" data-sortable="true"><span th:text="#{global.category}">Categoría</span></th>
+                            <th data-field="create-date" data-sortable="true"><span th:text="#{global.create-date}">Creado En</span></th>
+                            <th data-field="modify-date" data-sortable="true"><span th:text="#{global.modify-date}">Modificado En</span></th>
+                            <th><span th:text="#{global.action}">Acción</span></th>
                         </tr>
                         </thead>
                         <tbody>
-                        <tr>
-                            <td>1</td>
-                            <td>Item 1</td>
-                            <td>$1</td>
-                        </tr>
-                        <tr>
-                            <td>2</td>
-                            <td>Item 2</td>
-                            <td>$2</td>
+                        <tr th:each="product : ${products}">
+                            <td th:text="${product.id}"></td>
+                            <td th:text="${product.name}"></td>
+                            <td th:text="${product.description}"></td>
+                            <td th:text="${product.inventoryMin}"></td>
+                            <td th:text="${product.price}"></td>
+                            <td th:text="${product.category.name}"></td>
+                            <td th:text="${#calendars.format(product.createDate,'dd/MM/yyyy hh:mm a')}"></td>
+                            <td th:text="${#calendars.format(product.modifyDate,'dd/MM/yyyy hh:mm a')}"></td>
+                            <td>
+                                <a type="button" class="btn btn-sm btn-info"
+                                   th:href="@{/inventario/productos/editar(id=${product.id})}">
+                                    <i class="fa fa-edit"></i>
+                                </a>
+                                <a type="button" class="btn btn-sm btn-danger">
+                                    <i class="fa fa-trash"></i>
+                                </a>
+                            </td>
                         </tr>
                         </tbody>
                     </table>

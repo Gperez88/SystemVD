@@ -1,19 +1,26 @@
 package com.perezmejia.systemvd.view;
 
+import com.gp89developers.mapperobject.EntityMapper;
+import com.gp89developers.mapperobject.Mapping;
+import com.gp89developers.mapperobject.ParsableObject;
 import com.perezmejia.systemvd.entity.Client;
-import com.perezmejia.systemvd.helper.mapperobject.ParsableObject;
-import com.perezmejia.systemvd.view.security.PersonView;
 
 import java.sql.Timestamp;
 
 /**
  * Created by Guil on 5/8/2016.
  */
+@EntityMapper
 public class ClientView extends ParsableObject<Client, ClientView> {
+    @Mapping
     private int id;
+    @Mapping
     private int enabled;
+    @Mapping
     private Timestamp createDate;
+    @Mapping
     private Timestamp modifyDate;
+    @Mapping
     private PersonView person;
 
     public ClientView() {

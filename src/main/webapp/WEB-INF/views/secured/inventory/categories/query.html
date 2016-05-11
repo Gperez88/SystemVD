@@ -20,7 +20,7 @@
         <div class="col-lg-12">
             <h1 class="page-header">
                 <i class="fa fa-tags"></i>
-                Categorias
+                <span th:text="#{page.category.query.title}">Categorías</span>
             </h1>
         </div>
     </div><!--/.row-->
@@ -28,7 +28,7 @@
     <div class="row margin-bottom7">
         <div class="col-lg-12">
             <a href="/inventario/categorias/agregar" class="btn btn-primary pull-right">
-                <span>Nueva Categoria</span>
+                <span th:text="#{page.category.action.add}">Nueva Categoría</span>
             </a>
         </div>
     </div>
@@ -36,8 +36,9 @@
     <div class="row">
         <div class="col-lg-12">
             <div class="panel panel-default">
-                <div class="panel-body" th:if="${#lists.isEmpty(categories)}">
-                    <span>not Esta llena</span>
+                <div class="alert bg-info" role="alert"  th:if="${#lists.isEmpty(categories)}">
+                    <i class="fa fa-info-circle fa-lg" aria-hidden="true"></i>
+                    <span th:text="#{page.category.no-data-message}"></span> <b th:text="#{page.category.action.add}"></b>
                 </div>
                 <div class="panel-body" th:if="${not #lists.isEmpty(categories)}">
                     <table data-toggle="table" data-locale="es-ES" data-pagination="true" data-sort-name="name" data-sort-order="desc">

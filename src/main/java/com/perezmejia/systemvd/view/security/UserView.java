@@ -1,9 +1,10 @@
 package com.perezmejia.systemvd.view.security;
 
+import com.gp89developers.mapperobject.EntityMapper;
+import com.gp89developers.mapperobject.Mapping;
+import com.gp89developers.mapperobject.ParsableObject;
 import com.perezmejia.systemvd.entity.security.User;
-import com.perezmejia.systemvd.helper.mapperobject.EntityMapper;
-import com.perezmejia.systemvd.helper.mapperobject.Mapping;
-import com.perezmejia.systemvd.helper.mapperobject.ParsableObject;
+import com.perezmejia.systemvd.view.PersonView;
 import org.springframework.util.CollectionUtils;
 
 import java.sql.Timestamp;

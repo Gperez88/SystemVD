@@ -1,9 +1,9 @@
-package com.perezmejia.systemvd.view.security;
+package com.perezmejia.systemvd.view;
 
+import com.gp89developers.mapperobject.EntityMapper;
+import com.gp89developers.mapperobject.Mapping;
+import com.gp89developers.mapperobject.ParsableObject;
 import com.perezmejia.systemvd.entity.Person;
-import com.perezmejia.systemvd.helper.mapperobject.EntityMapper;
-import com.perezmejia.systemvd.helper.mapperobject.Mapping;
-import com.perezmejia.systemvd.helper.mapperobject.ParsableObject;
 
 import java.sql.Date;
 
@@ -16,9 +16,9 @@ public class PersonView extends ParsableObject<Person, PersonView> {
     @Mapping
     private int id;
     @Mapping
-    private String firstName;
+    private String firstname;
     @Mapping
-    private String lastName;
+    private String lastname;
     @Mapping
     private Date birthdate;
     @Mapping
@@ -34,20 +34,20 @@ public class PersonView extends ParsableObject<Person, PersonView> {
         this.id = id;
     }
 
-    public String getFirstName() {
-        return firstName;
+    public String getFirstname() {
+        return firstname;
     }
 
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
+    public void setFirstname(String firstname) {
+        this.firstname = firstname;
     }
 
-    public String getLastName() {
-        return lastName;
+    public String getLastname() {
+        return lastname;
     }
 
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
+    public void setLastname(String lastname) {
+        this.lastname = lastname;
     }
 
     public Date getBirthdate() {

@@ -4,6 +4,7 @@ import com.perezmejia.systemvd.config.template.Layout;
 import com.perezmejia.systemvd.config.template.Script;
 import com.perezmejia.systemvd.service.ClientService;
 import com.perezmejia.systemvd.view.ClientView;
+import com.perezmejia.systemvd.view.SexView;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
 import org.springframework.stereotype.Controller;
@@ -15,6 +16,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.validation.Valid;
+import java.util.Arrays;
+import java.util.List;
 import java.util.Locale;
 
 /**
@@ -37,6 +40,11 @@ public class ClientController {
 
     @Autowired
     private ClientService clientService;
+
+    @ModelAttribute("allSex")
+    public List<SexView> populateSexList() {
+        return Arrays.asList(SexView.values());
+    }
 
     @Script("/static/js/views/clients/query.js")
     @Layout("table")
@@ -67,7 +75,6 @@ public class ClientController {
 
         return FORM_VIEW_PATH;
     }
-
 
     @Script("/static/js/views/clients/query.js")
     @RequestMapping(value = {ADD_PATH, EDIT_PATH}, method = RequestMethod.POST)

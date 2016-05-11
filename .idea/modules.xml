@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/../../MapperObject/MapperObject.iml" filepath="$PROJECT_DIR$/../../MapperObject/MapperObject.iml" />
       <module fileurl="file://$PROJECT_DIR$/SystemVD.iml" filepath="$PROJECT_DIR$/SystemVD.iml" />
     </modules>
   </component>

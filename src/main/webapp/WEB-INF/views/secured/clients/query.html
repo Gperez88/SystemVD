@@ -18,10 +18,12 @@
 
     <div class="row">
         <div class="col-lg-12">
-            <h1 class="page-header">Clientes</h1>
+            <h1 class="page-header">
+                <i class="fa fa-user"></i>
+                <span th:text="#{page.client.query.title}">Clientes</span>
+            </h1>
         </div>
     </div><!--/.row-->
-
 
     <div class="row margin-bottom7">
         <div class="col-lg-12">
@@ -55,8 +57,8 @@
                         <tbody>
                         <tr th:each="client : ${clients}">
                             <td th:text="${client.id}"></td>
-                            <td th:text="${client.person.firstName}"></td>
-                            <td th:text="${client.person.lastName}"></td>
+                            <td th:text="${client.person.firstname}"></td>
+                            <td th:text="${client.person.lastname}"></td>
                             <td th:text="${client.person.sex}"></td>
                             <td th:text="${client.person.email}"></td>
                             <td th:text="${#calendars.format(client.createDate,'dd/MM/yyyy hh:mm a')}"></td>

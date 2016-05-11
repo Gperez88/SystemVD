@@ -6,7 +6,7 @@
     <groupId>com.perezmejia</groupId>
     <artifactId>systemvd</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <packaging>war</packaging>
+    <packaging>pom</packaging>
 
     <name>SystemVD</name>
     <description>Sistema de ventas de Distribuidara</description>
@@ -76,6 +76,12 @@
             <version>1.4</version>
         </dependency>
 
+        <dependency>
+            <groupId>com.gp89developers</groupId>
+            <artifactId>MapperObject</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
+
     </dependencies>
 
     <build>
@@ -90,5 +96,8 @@
         </plugins>
     </build>
 
+    <modules>
+        <module>../../MapperObject</module>
+    </modules>
 
 </project>

@@ -1,9 +1,9 @@
 package com.perezmejia.systemvd.service.security;
 
+import com.gp89developers.mapperobject.Mapper;
+import com.gp89developers.mapperobject.MapperObject;
 import com.perezmejia.systemvd.entity.security.Authorities;
 import com.perezmejia.systemvd.entity.security.User;
-import com.perezmejia.systemvd.helper.mapperobject.Mapper;
-import com.perezmejia.systemvd.helper.mapperobject.MapperObject;
 import com.perezmejia.systemvd.view.security.CustomUserDetails;
 import com.perezmejia.systemvd.view.security.UserView;
 import com.perezmejia.systemvd.repository.security.UserRepository;

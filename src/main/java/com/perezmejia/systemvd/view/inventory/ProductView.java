@@ -4,36 +4,42 @@ import com.gp89developers.mapperobject.EntityMapper;
 import com.gp89developers.mapperobject.Mapping;
 import com.gp89developers.mapperobject.ParsableObject;
 import com.perezmejia.systemvd.entity.inventory.Category;
+import com.perezmejia.systemvd.entity.inventory.Product;
 
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
 import java.sql.Timestamp;
 
 /**
- * Created by Guil on 5/8/2016.
+ * Created by Guil on 5/10/2016.
  */
+
 @EntityMapper
-public class CategoryView extends ParsableObject<Category, CategoryView> {
+public class ProductView extends ParsableObject<Product, ProductView> {
     @Mapping
     private int id;
     @Mapping
-    @NotNull
-    @Size(max = 100)
     private String name;
     @Mapping
-    @NotNull
-    @Size(max = 100)
     private String description;
+    @Mapping
+    private int inventoryMin;
+    @Mapping
+    private float price;
+    @Mapping
+    private String unit;
+    @Mapping(otherType = true)
+    private CategoryView category;
     @Mapping
     private Timestamp createDate;
     @Mapping
     private Timestamp modifyDate;
+    @Mapping
+    private int active;
 
-    public CategoryView() {
+    public ProductView() {
     }
 
-    public CategoryView(Category category) {
-        load(category);
+    public ProductView(Product product) {
+        load(product);
     }
 
     public int getId() {
@@ -60,6 +66,38 @@ public class CategoryView extends ParsableObject<Category, CategoryView> {
         this.description = description;
     }
 
+    public int getInventoryMin() {
+        return inventoryMin;
+    }
+
+    public void setInventoryMin(int inventoryMin) {
+        this.inventoryMin = inventoryMin;
+    }
+
+    public float getPrice() {
+        return price;
+    }
+
+    public void setPrice(float price) {
+        this.price = price;
+    }
+
+    public String getUnit() {
+        return unit;
+    }
+
+    public void setUnit(String unit) {
+        this.unit = unit;
+    }
+
+    public CategoryView getCategory() {
+        return category;
+    }
+
+    public void setCategory(CategoryView category) {
+        this.category = category;
+    }
+
     public Timestamp getCreateDate() {
         return createDate;
     }
@@ -76,8 +114,16 @@ public class CategoryView extends ParsableObject<Category, CategoryView> {
         this.modifyDate = modifyDate;
     }
 
+    public int getActive() {
+        return active;
+    }
+
+    public void setActive(int active) {
+        this.active = active;
+    }
+
     @Override
-    public Class<Category> getDomainClass() {
-        return Category.class;
+    public Class<Product> getDomainClass() {
+        return Product.class;
     }
 }

@@ -1,9 +1,9 @@
 package com.perezmejia.systemvd.view.security;
 
+import com.gp89developers.mapperobject.EntityMapper;
+import com.gp89developers.mapperobject.Mapping;
+import com.gp89developers.mapperobject.ParsableObject;
 import com.perezmejia.systemvd.entity.security.Authority;
-import com.perezmejia.systemvd.helper.mapperobject.EntityMapper;
-import com.perezmejia.systemvd.helper.mapperobject.Mapping;
-import com.perezmejia.systemvd.helper.mapperobject.ParsableObject;
 
 /**
  * Created by Guil on 5/7/2016.
