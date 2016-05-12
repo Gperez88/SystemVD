@@ -20,7 +20,7 @@
         <div class="col-lg-12">
             <h1 class="page-header">
                 <i class="fa fa-industry"></i>
-                <span th:text="#{page.warehouseView.query.title}">Almacenes</span>
+                <span th:text="#{page.warehouse.query.title}">Almacenes</span>
             </h1>
         </div>
     </div><!--/.row-->
@@ -28,7 +28,7 @@
     <div class="row margin-bottom7">
         <div class="col-lg-12">
             <a href="/inventario/almacenes/agregar" class="btn btn-primary pull-right">
-                <span th:text="#{page.warehouseView.action.add}">Nuevo Almacén</span>
+                <span th:text="#{page.warehouse.action.add}">Nuevo Almacén</span>
             </a>
         </div>
     </div>
@@ -38,7 +38,7 @@
             <div class="panel panel-default">
                 <div class="alert bg-info" role="alert"  th:if="${#lists.isEmpty(warehouses)}">
                     <i class="fa fa-info-circle fa-lg" aria-hidden="true"></i>
-                    <span th:text="#{page.warehouseView.no-data-message}"></span> <b th:text="#{page.warehouseView.action.add}"></b>
+                    <span th:text="#{page.warehouse.no-data-message}"></span> <b th:text="#{page.warehouse.action.add}"></b>
                 </div>
                 <div class="panel-body" th:if="${not #lists.isEmpty(warehouses)}">
                     <table data-toggle="table" data-locale="es-ES" data-pagination="true" data-sort-name="name" data-sort-order="desc">
@@ -46,24 +46,22 @@
                         <tr>
                             <th data-field="id" data-sortable="true"><span th:text="#{global.id}">ID</span></th>
                             <th data-field="name" data-sortable="true"><span th:text="#{global.name}">Nombre</span></th>
-                            <th data-field="product" data-sortable="true"><span th:text="#{global.product}">Producto</span></th>
-                            <th data-field="stock" data-sortable="true"><span th:text="#{global.stock}">Cantidad</span></th>
+                            <th data-field="description" data-sortable="true"><span th:text="#{global.description}">Descripción</span></th>
                             <th data-field="create-date" data-sortable="true"><span th:text="#{global.create-date}">Creado En</span></th>
                             <th data-field="modify-date" data-sortable="true"><span th:text="#{global.modify-date}">Modificado En</span></th>
                             <th><span th:text="#{global.action}">Acción</span></th>
                         </tr>
                         </thead>
                         <tbody>
-                        <tr th:each="warehouseView : ${warehouses}">
-                            <td th:text="${warehouseView.id}"></td>
-                            <td th:text="${warehouseView.name}"></td>
-                            <td th:text="${warehouseView.product.name}"></td>
-                            <td th:text="${warehouseView.stock}"></td>
-                            <td th:text="${#calendars.format(warehouseView.createDate,'dd/MM/yyyy hh:mm a')}"></td>
-                            <td th:text="${#calendars.format(warehouseView.modifyDate,'dd/MM/yyyy hh:mm a')}"></td>
+                        <tr th:each="warehouse : ${warehouses}">
+                            <td th:text="${warehouse.id}"></td>
+                            <td th:text="${warehouse.name}"></td>
+                            <td th:text="${warehouse.description}"></td>
+                            <td th:text="${#calendars.format(warehouse.createDate,'dd/MM/yyyy hh:mm a')}"></td>
+                            <td th:text="${#calendars.format(warehouse.modifyDate,'dd/MM/yyyy hh:mm a')}"></td>
                             <td>
                                 <a type="button" class="btn btn-sm btn-info"
-                                   th:href="@{/inventario/almacenes/editar(id=${warehouseView.id})}">
+                                   th:href="@{/inventario/almacenes/editar(id=${warehouse.id})}">
                                     <i class="fa fa-edit"></i>
                                 </a>
                                 <a type="button" class="btn btn-sm btn-danger">
