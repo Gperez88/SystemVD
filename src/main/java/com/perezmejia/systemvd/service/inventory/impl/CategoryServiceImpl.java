@@ -28,7 +28,7 @@ public class CategoryServiceImpl implements CategoryService {
     }
 
     @Override
-    public CategoryView findById(Integer id) {
+    public CategoryView findById(Long id) {
         return new CategoryView(categoryRepository.findOne(id));
     }
 

@@ -17,7 +17,7 @@ import java.util.List;
 @EntityMapper
 public class UserView extends ParsableObject<User, UserView> {
     @Mapping
-    private int id;
+    private Long id;
     @Mapping
     private String userName;
     @Mapping
@@ -35,11 +35,11 @@ public class UserView extends ParsableObject<User, UserView> {
     @Mapping(otherType = true)
     private PersonView person;
 
-    public int getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -118,7 +118,8 @@ public class UserView extends ParsableObject<User, UserView> {
 
         if (!CollectionUtils.isEmpty(user.getAuthorities())) {
             List<AuthorityView> authorityViews = new ArrayList<>();
-            user.getAuthorities().forEach(authorities -> authorityViews.add(new AuthorityView(authorities.getAuthority())));
+            user.getAuthorities()
+                    .forEach(authorities -> authorityViews.add(new AuthorityView(authorities.getAuthority())));
         }
 
         return userView;

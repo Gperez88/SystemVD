@@ -31,7 +31,7 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public ProductView findById(Integer id) {
+    public ProductView findById(Long id) {
         return new ProductView(productRepository.findOne(id));
     }
 

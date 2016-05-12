@@ -7,6 +7,6 @@ import java.util.List;
  */
 public interface BaseService<T> {
     public List<T> findAll();
-    public T findById(Integer id);
+    public T findById(Long id);
     public void save(T t);
 }

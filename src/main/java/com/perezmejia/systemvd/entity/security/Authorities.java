@@ -14,17 +14,17 @@ import javax.persistence.*;
 @Entity
 @Table(name = "authorities", schema = "systemvd")
 public class Authorities {
-    private int id;
+    private Long id;
     private Authority authority;
     private User user;
 
     @Id
     @Column(name = "id")
-    public int getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -55,7 +55,7 @@ public class Authorities {
 
         Authorities that = (Authorities) o;
 
-        if (id != that.id) return false;
+        if (id != null ? !id.equals(that.id) : that.id != null) return false;
         if (user != null ? !user.equals(that.user) : that.user != null) return false;
         if (authority != null ? !authority.equals(that.authority) : that.authority != null) return false;
 
@@ -64,7 +64,7 @@ public class Authorities {
 
     @Override
     public int hashCode() {
-        int result = id;
+        int result =  (id != null ? id.hashCode() : 0);;
         result = 31 * result + (user != null ? user.hashCode() : 0);
         result = 31 * result + (authority != null ? authority.hashCode() : 0);
         return result;

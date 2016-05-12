@@ -27,7 +27,7 @@ public class ClientServiceImpl implements ClientService {
     }
 
     @Override
-    public ClientView findById(Integer id) {
+    public ClientView findById(Long id) {
         return new ClientView(clientRepository.findOne(id));
     }
 

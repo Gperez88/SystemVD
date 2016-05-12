@@ -15,7 +15,7 @@ import java.sql.Timestamp;
 @EntityMapper
 public class CategoryView extends ParsableObject<Category, CategoryView> {
     @Mapping
-    private int id;
+    private Long id;
     @Mapping
     @NotNull
     @Size(max = 100)
@@ -36,11 +36,11 @@ public class CategoryView extends ParsableObject<Category, CategoryView> {
         load(category);
     }
 
-    public int getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

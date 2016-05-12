@@ -7,9 +7,9 @@ import java.sql.Timestamp;
  * Created by Guil on 5/8/2016.
  */
 @Entity
-@Table(name = "client",  schema = "systemvd")
+@Table(name = "client", schema = "systemvd")
 public class Client {
-    private int id;
+    private Long id;
     private int enabled;
     private Timestamp createDate;
     private Timestamp modifyDate;
@@ -18,11 +18,11 @@ public class Client {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id")
-    public int getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -74,7 +74,7 @@ public class Client {
 
         Client that = (Client) o;
 
-        if (id != that.id) return false;
+        if (id != null ? !id.equals(that.id) : that.id != null) return false;
         if (enabled != that.enabled) return false;
         if (createDate != null ? !createDate.equals(that.createDate) : that.createDate != null) return false;
         if (modifyDate != null ? !modifyDate.equals(that.modifyDate) : that.modifyDate != null) return false;
@@ -85,7 +85,7 @@ public class Client {
 
     @Override
     public int hashCode() {
-        int result = id;
+        int result = (id != null ? id.hashCode() : 0);
         result = 31 * result + enabled;
         result = 31 * result + (createDate != null ? createDate.hashCode() : 0);
         result = 31 * result + (modifyDate != null ? modifyDate.hashCode() : 0);

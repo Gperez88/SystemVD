@@ -12,7 +12,7 @@ import java.util.List;
 @Entity
 @Table(name = "user", schema = "systemvd")
 public class User {
-    private int id;
+    private Long id;
     private String userName;
     private String password;
     private int enabled;
@@ -24,11 +24,11 @@ public class User {
 
     @Id
     @Column(name = "id")
-    public int getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -118,7 +118,7 @@ public class User {
 
         User that = (User) o;
 
-        if (id != that.id) return false;
+        if (id != null ? !id.equals(that.id) : that.id != null) return false;
         if (enabled != that.enabled) return false;
         if (userName != null ? !userName.equals(that.userName) : that.userName != null) return false;
         if (password != null ? !password.equals(that.password) : that.password != null) return false;
@@ -133,7 +133,7 @@ public class User {
 
     @Override
     public int hashCode() {
-        int result = id;
+        int result = (id != null ? id.hashCode() : 0);
         result = 31 * result + (userName != null ? userName.hashCode() : 0);
         result = 31 * result + (password != null ? password.hashCode() : 0);
         result = 31 * result + enabled;

@@ -11,7 +11,7 @@ import com.perezmejia.systemvd.entity.security.Authority;
 @EntityMapper
 public class AuthorityView extends ParsableObject<Authority, AuthorityView> {
     @Mapping
-    private int id;
+    private Long id;
     @Mapping
     private String authority;
     @Mapping
@@ -24,11 +24,11 @@ public class AuthorityView extends ParsableObject<Authority, AuthorityView> {
         load(authority);
     }
 
-    public int getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

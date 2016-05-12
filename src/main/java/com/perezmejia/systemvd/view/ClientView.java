@@ -13,7 +13,7 @@ import java.sql.Timestamp;
 @EntityMapper
 public class ClientView extends ParsableObject<Client, ClientView> {
     @Mapping
-    private int id;
+    private Long id;
     @Mapping
     private int enabled;
     @Mapping
@@ -30,11 +30,11 @@ public class ClientView extends ParsableObject<Client, ClientView> {
         load(client);
     }
 
-    public int getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

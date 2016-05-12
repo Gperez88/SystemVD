@@ -14,7 +14,7 @@ import java.sql.Date;
 @EntityMapper
 public class PersonView extends ParsableObject<Person, PersonView> {
     @Mapping
-    private int id;
+    private Long id;
     @Mapping
     private String firstname;
     @Mapping
@@ -26,11 +26,11 @@ public class PersonView extends ParsableObject<Person, PersonView> {
     @Mapping
     private String email;
 
-    public int getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

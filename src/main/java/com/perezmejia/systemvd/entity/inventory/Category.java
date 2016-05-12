@@ -14,7 +14,7 @@ import java.sql.Timestamp;
 @Entity
 @Table(name = "category", schema = "systemvd")
 public class Category {
-    private int id;
+    private Long id;
     private String name;
     private String description;
     private Timestamp createDate;
@@ -23,11 +23,11 @@ public class Category {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id")
-    public int getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -80,7 +80,7 @@ public class Category {
 
         Category that = (Category) o;
 
-        if (id != that.id) return false;
+        if (id != null ? !id.equals(that.id) : that.id != null) return false;
         if (name != null ? !name.equals(that.name) : that.name != null) return false;
         if (description != null ? !name.equals(that.description) : that.description != null) return false;
         if (createDate != null ? !createDate.equals(that.createDate) : that.createDate != null) return false;
@@ -92,7 +92,7 @@ public class Category {
 
     @Override
     public int hashCode() {
-        int result = id;
+        int result = (id != null ? id.hashCode() : 0);
         result = 31 * result + (name != null ? name.hashCode() : 0);
         result = 31 * result + (description != null ? description.hashCode() : 0);
         result = 31 * result + (createDate != null ? createDate.hashCode() : 0);

@@ -69,7 +69,7 @@ public class ProductController {
     }
 
     @RequestMapping(value = EDIT_PATH, method = RequestMethod.GET)
-    public String edit(Model model, @RequestParam(value = "id", required = true) int id) {
+    public String edit(Model model, @RequestParam(value = "id", required = true) Long id) {
         ProductView productView = productService.findById(id);
 
         model.addAttribute("breadcrumb", messageSource.getMessage("breadcrumb.edit", null, Locale.getDefault()));

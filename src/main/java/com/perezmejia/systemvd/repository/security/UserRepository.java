@@ -9,7 +9,7 @@ import org.springframework.stereotype.Repository;
  * Created by Guil on 5/1/2016.
  */
 
-public interface UserRepository extends CrudRepository<User, Integer> {
-    @Query("select u from User u inner join u.person where u.userName = ?1")
+public interface UserRepository extends CrudRepository<User, Long> {
+    //@Query("select u from User u inner join u.person where u.userName = ?1")
     public User findByUserName(String userName);
 }

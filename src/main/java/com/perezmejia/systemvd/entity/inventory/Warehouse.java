@@ -1,25 +1,25 @@
 package com.perezmejia.systemvd.entity.inventory;
 
+import com.perezmejia.systemvd.entity.security.Authorities;
+
 import javax.persistence.*;
 import java.sql.Timestamp;
+import java.util.List;
 
 /**
- * Created by Guil on 5/7/2016.
+ * Created by Guil on 5/11/2016.
  */
 
 @Entity
-@Table(name = "product", schema = "systemvd")
-public class Product {
+@Table(name = "warehouse", schema = "systemvd")
+public class Warehouse {
     private Long id;
     private String name;
     private String description;
-    private int inventoryMin;
-    private float price;
-    private String unit;
-    private Category category;
     private Timestamp createDate;
     private Timestamp modifyDate;
     private int active;
+    private List<WarehouseDetail> warehouseDetails;
 
     @Id
     @Column(name = "id")
@@ -51,44 +51,13 @@ public class Product {
         this.description = description;
     }
 
-    @Basic
-    @Column(name = "inventary_min")
-    public int getInventoryMin() {
-        return inventoryMin;
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "warehouse")
+    public List<WarehouseDetail> getWarehouseDetails() {
+        return warehouseDetails;
     }
 
-    public void setInventoryMin(int inventoryMin) {
-        this.inventoryMin = inventoryMin;
-    }
-
-    @Basic
-    @Column(name = "price")
-    public float getPrice() {
-        return price;
-    }
-
-    public void setPrice(float price) {
-        this.price = price;
-    }
-
-    @Basic
-    @Column(name = "unit")
-    public String getUnit() {
-        return unit;
-    }
-
-    public void setUnit(String unit) {
-        this.unit = unit;
-    }
-
-    @ManyToOne
-    @JoinColumn(name = "category_id")
-    public Category getCategory() {
-        return category;
-    }
-
-    public void setCategory(Category category) {
-        this.category = category;
+    public void setWarehouseDetails(List<WarehouseDetail> warehouseDetails) {
+        this.warehouseDetails = warehouseDetails;
     }
 
     @Basic

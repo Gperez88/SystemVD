@@ -3,17 +3,19 @@ package com.perezmejia.systemvd.view.inventory;
 import com.gp89developers.mapperobject.EntityMapper;
 import com.gp89developers.mapperobject.Mapping;
 import com.gp89developers.mapperobject.ParsableObject;
-import com.perezmejia.systemvd.entity.inventory.Category;
-import com.perezmejia.systemvd.entity.inventory.Product;
+import com.gp89developers.mapperobject.utils.CollectionUtils;;
+import com.perezmejia.systemvd.entity.inventory.Warehouse;
 
 import java.sql.Timestamp;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
- * Created by Guil on 5/10/2016.
+ * Created by Guil on 5/11/2016.
  */
 
 @EntityMapper
-public class ProductView extends ParsableObject<Product, ProductView> {
+public class WarehouseView extends ParsableObject<Warehouse, WarehouseView> {
     @Mapping
     private Long id;
     @Mapping
@@ -21,25 +23,18 @@ public class ProductView extends ParsableObject<Product, ProductView> {
     @Mapping
     private String description;
     @Mapping
-    private int inventoryMin;
-    @Mapping
-    private float price;
-    @Mapping
-    private String unit;
-    @Mapping(otherType = true)
-    private CategoryView category;
-    @Mapping
     private Timestamp createDate;
     @Mapping
     private Timestamp modifyDate;
     @Mapping
     private int active;
+    //manual mapper
+    private List<WarehouseDetailView> warehouseDetailViews;
 
-    public ProductView() {
-    }
+    public WarehouseView(){}
 
-    public ProductView(Product product) {
-        load(product);
+    public WarehouseView(Warehouse warehouse){
+        load(warehouse);
     }
 
     public Long getId() {
@@ -66,36 +61,12 @@ public class ProductView extends ParsableObject<Product, ProductView> {
         this.description = description;
     }
 
-    public int getInventoryMin() {
-        return inventoryMin;
+    public List<WarehouseDetailView> getWarehouseDetailViews() {
+        return warehouseDetailViews;
     }
 
-    public void setInventoryMin(int inventoryMin) {
-        this.inventoryMin = inventoryMin;
-    }
-
-    public float getPrice() {
-        return price;
-    }
-
-    public void setPrice(float price) {
-        this.price = price;
-    }
-
-    public String getUnit() {
-        return unit;
-    }
-
-    public void setUnit(String unit) {
-        this.unit = unit;
-    }
-
-    public CategoryView getCategory() {
-        return category;
-    }
-
-    public void setCategory(CategoryView category) {
-        this.category = category;
+    public void setWarehouseDetailViews(List<WarehouseDetailView> warehouseDetailViews) {
+        this.warehouseDetailViews = warehouseDetailViews;
     }
 
     public Timestamp getCreateDate() {
@@ -123,7 +94,20 @@ public class ProductView extends ParsableObject<Product, ProductView> {
     }
 
     @Override
-    public Class<Product> getDomainClass() {
-        return Product.class;
+    public WarehouseView load(Warehouse warehouse) {
+        WarehouseView warehouseView = super.load(warehouse);
+
+        if (!CollectionUtils.isEmpty(warehouse.getWarehouseDetails())) {
+            List<WarehouseDetailView> warehouseDetailViews = new ArrayList<>();
+            warehouse.getWarehouseDetails()
+                    .forEach(warehouseDetail -> warehouseDetailViews.add(new WarehouseDetailView(warehouseDetail)));
+        }
+
+        return warehouseView;
+    }
+
+    @Override
+    public Class<Warehouse> getDomainClass() {
+        return Warehouse.class;
     }
 }
