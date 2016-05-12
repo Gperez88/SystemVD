@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Clientes</title>
+</head>
+<body>
+
+<div class="col-sm-9 col-sm-offset-3 col-lg-10 col-lg-offset-2 main" th:fragment="content">
+    <div class="row">
+        <ol class="breadcrumb">
+            <li><a href="inicio">
+                <i class="fa fa-home" aria-hidden="true"></i>
+            </a></li>
+            <li class="active">Clientes</li>
+        </ol>
+    </div><!--/.row-->
+
+    <div class="row">
+        <div class="col-lg-12">
+            <h1 class="page-header">
+                <i class="fa fa-user"></i>
+                <span th:text="#{page.client.query.title}">Clientes</span>
+            </h1>
+        </div>
+    </div><!--/.row-->
+
+    <div class="row margin-bottom7">
+        <div class="col-lg-12">
+            <a href="/clientes/agregar" class="btn btn-primary pull-right">
+                <span th:text="#{page.client.action.add}">Agregar Cliente</span>
+            </a>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="panel panel-default">
+                <div class="alert bg-info" role="alert"  th:if="${#lists.isEmpty(clients)}">
+                    <i class="fa fa-info-circle fa-lg" aria-hidden="true"></i>
+                    <span th:text="#{page.client.no-data-message}"></span> <b th:text="#{page.client.action.add}"></b>
+                </div>
+                <div class="panel-body" th:if="${not #lists.isEmpty(clients)}">
+                    <table data-toggle="table" data-locale="es-ES" data-pagination="true" data-sort-name="name" data-sort-order="desc">
+                        <thead>
+                        <tr>
+                            <th data-field="id" data-sortable="true"><span th:text="#{global.id}">ID</span></th>
+                            <th data-field="first-name" data-sortable="true"><span th:text="#{global.first-name}">Nombre</span></th>
+                            <th data-field="last-name" data-sortable="true"><span th:text="#{global.last-name}">Apellido</span></th>
+                            <th data-field="sex" data-sortable="true"><span th:text="#{global.sex}">Sexo</span></th>
+                            <th data-field="email" data-sortable="true"><span th:text="#{global.email">Email</span></th>
+                            <th data-field="create-date" data-sortable="true"><span th:text="#{global.create-date}">Creado En</span></th>
+                            <th data-field="modify-date" data-sortable="true"><span th:text="#{global.modify-date}">Modificado En</span></th>
+                            <th><span th:text="#{global.action}">Acción</span></th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr th:each="client : ${clients}">
+                            <td th:text="${client.id}"></td>
+                            <td th:text="${client.person.firstname}"></td>
+                            <td th:text="${client.person.lastname}"></td>
+                            <td th:text="${client.person.sex}"></td>
+                            <td th:text="${client.person.email}"></td>
+                            <td th:text="${#calendars.format(client.createDate,'dd/MM/yyyy hh:mm a')}"></td>
+                            <td th:text="${#calendars.format(client.modifyDate,'dd/MM/yyyy hh:mm a')}"></td>
+                            <td>
+                                <a type="button" class="btn btn-sm btn-info"
+                                   th:href="@{/clientes/editar(id=${client.id})}">
+                                    <i class="fa fa-edit"></i>
+                                </a>
+                                <a type="button" class="btn btn-sm btn-danger">
+                                    <i class="fa fa-trash"></i>
+                                </a>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div><!--/.row-->
+
+</div><!--/.main-->
+
+</body>
+</html>

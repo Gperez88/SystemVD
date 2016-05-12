@@ -1,6 +1,6 @@
 package com.perezmejia.systemvd.controller;
 
-import com.perezmejia.systemvd.helper.template.Script;
+import com.perezmejia.systemvd.config.template.Script;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -11,10 +11,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 public class IndexController {
 
-    @Script("/resources/js/views/index.js")
-    @RequestMapping("/index")
+    @Script("/static/js/views/index.js")
+    @RequestMapping("/inicio")
     public String index() {
-        return "secured/index";
+        return "/secured/index";
     }
 
 }

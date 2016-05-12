@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Productos</title>
+</head>
+<body>
+
+<div class="col-sm-9 col-sm-offset-3 col-lg-10 col-lg-offset-2 main" th:fragment="content">
+    <div class="row">
+        <ol class="breadcrumb">
+            <li><a href="/inicio">
+                <i class="fa fa-home" aria-hidden="true"></i>
+            </a></li>
+            <li class="active">
+                <span th:text="#{breadcrumb.products}">Productos</span>
+            </li>
+        </ol>
+    </div><!--/.row-->
+
+    <div class="row">
+        <div class="col-lg-12">
+            <h1 class="page-header">
+                <i class="fa fa-archive"></i>
+                <span th:text="#{page.product.query.title}">Productos</span>
+            </h1>
+        </div>
+    </div><!--/.row-->
+
+    <div class="row margin-bottom7">
+        <div class="col-lg-12">
+            <a href="/inventario/productos/agregar" class="btn btn-primary pull-right">
+                <span th:text="#{page.product.action.add}">Agregar Producto</span>
+            </a>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="panel panel-default">
+                <div class="alert bg-info" role="alert"  th:if="${#lists.isEmpty(products)}">
+                    <i class="fa fa-info-circle fa-lg" aria-hidden="true"></i>
+                    <span th:text="#{page.product.no-data-message}"></span> <b th:text="#{page.product.action.add}"></b>
+                </div>
+                <div class="panel-body" th:if="${not #lists.isEmpty(products)}">
+                    <table data-toggle="table" data-locale="es-ES" data-pagination="true" data-sort-name="name" data-sort-order="desc">
+                        <thead>
+                        <tr>
+                            <th data-field="id" data-sortable="true"><span th:text="#{global.id}">ID</span></th>
+                            <th data-field="name" data-sortable="true"><span th:text="#{global.name}">Nombre</span></th>
+                            <th data-field="description" data-sortable="true"><span th:text="#{global.description}">Descripción</span></th>
+                            <th data-field="inventory-min" data-sortable="true"><span th:text="#{global.inventory-min}">Minino En Inventario</span></th>
+                            <th data-field="price" data-sortable="true"><span th:text="#{global.price}">Precio</span></th>
+                            <th data-field="catogory" data-sortable="true"><span th:text="#{global.category}">Categoría</span></th>
+                            <th data-field="create-date" data-sortable="true"><span th:text="#{global.create-date}">Creado En</span></th>
+                            <th data-field="modify-date" data-sortable="true"><span th:text="#{global.modify-date}">Modificado En</span></th>
+                            <th><span th:text="#{global.action}">Acción</span></th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr th:each="product : ${products}">
+                            <td th:text="${product.id}"></td>
+                            <td th:text="${product.name}"></td>
+                            <td th:text="${product.description}"></td>
+                            <td th:text="${product.inventoryMin}"></td>
+                            <td th:text="${product.price}"></td>
+                            <td th:text="${product.category.name}"></td>
+                            <td th:text="${#calendars.format(product.createDate,'dd/MM/yyyy hh:mm a')}"></td>
+                            <td th:text="${#calendars.format(product.modifyDate,'dd/MM/yyyy hh:mm a')}"></td>
+                            <td>
+                                <a type="button" class="btn btn-sm btn-info"
+                                   th:href="@{/inventario/productos/editar(id=${product.id})}">
+                                    <i class="fa fa-edit"></i>
+                                </a>
+                                <a type="button" class="btn btn-sm btn-danger">
+                                    <i class="fa fa-trash"></i>
+                                </a>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div><!--/.row-->
+
+</div><!--/.main-->
+
+</body>
+</html>
