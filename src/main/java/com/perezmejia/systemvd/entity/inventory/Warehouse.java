@@ -1,6 +1,7 @@
 package com.perezmejia.systemvd.entity.inventory;
 
-import com.perezmejia.systemvd.entity.security.Authorities;
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
 
 import javax.persistence.*;
 import java.sql.Timestamp;
@@ -23,6 +24,7 @@ public class Warehouse {
 
     @Id
     @Column(name = "id")
+    @GeneratedValue(strategy = GenerationType.AUTO)
     public Long getId() {
         return id;
     }
@@ -62,6 +64,7 @@ public class Warehouse {
 
     @Basic
     @Column(name = "create_date")
+    @CreationTimestamp
     public Timestamp getCreateDate() {
         return createDate;
     }
@@ -72,6 +75,7 @@ public class Warehouse {
 
     @Basic
     @Column(name = "modify_date")
+    @UpdateTimestamp
     public Timestamp getModifyDate() {
         return modifyDate;
     }

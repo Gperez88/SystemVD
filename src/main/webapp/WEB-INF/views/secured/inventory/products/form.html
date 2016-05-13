@@ -39,7 +39,7 @@
                 </div>
                 <div class="panel-body">
                     <div class="col-md-6">
-                        <form role="form" action="#" th:action="@{/inventario/productos/add}"
+                        <form role="form" action="#" th:action="@{/inventario/productos/agregar}"
                               th:object="${productView}" method="post">
 
                             <div class="form-group">
@@ -49,7 +49,7 @@
                                 <input class="form-control" type="text" th:field="*{name}" placeholder="Nombre del Producto"/>
 
                                 <div th:if="${#fields.hasErrors('name')}" th:errors="*{name}">
-                                    Name Error
+                                    Nombre Error
                                 </div>
                             </div>
 
@@ -57,9 +57,9 @@
                                 <label>
                                     <span th:text="#{global.description}">Descripción</span>
                                 </label>
-                                <textarea class="form-control" th:field="*{description}"  rows="3"></textarea>
+                                <textarea class="form-control" th:field="*{description}"  rows="3" placeholder="Descripción del Producto"></textarea>
 
-                                <div th:if="${#fields.hasErrors('description')}" th:errors="*{description}">Description
+                                <div th:if="${#fields.hasErrors('description')}" th:errors="*{description}">Descripción
                                     Error
                                 </div>
                             </div>

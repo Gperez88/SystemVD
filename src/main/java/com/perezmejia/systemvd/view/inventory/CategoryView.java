@@ -22,7 +22,7 @@ public class CategoryView extends ParsableObject<Category, CategoryView> {
     private String name;
     @Mapping
     @NotNull
-    @Size(max = 100)
+    @Size(max = 200)
     private String description;
     @Mapping
     private Timestamp createDate;

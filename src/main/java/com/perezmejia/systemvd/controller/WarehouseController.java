@@ -5,6 +5,7 @@ import com.perezmejia.systemvd.config.template.Script;
 import com.perezmejia.systemvd.service.inventory.ProductService;
 import com.perezmejia.systemvd.service.inventory.WarehouseService;
 import com.perezmejia.systemvd.view.inventory.ProductView;
+import com.perezmejia.systemvd.view.inventory.WarehouseDetailView;
 import com.perezmejia.systemvd.view.inventory.WarehouseView;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
@@ -28,11 +29,13 @@ import java.util.Locale;
 public class WarehouseController {
 
     private final String REL_PATH = "/inventario/almacenes";
+    private final String DETAIL_PATH = REL_PATH + "/detalle";
     private final String ADD_PATH = REL_PATH + "/agregar";
     private final String EDIT_PATH = REL_PATH + "/editar";
 
     private final String REL_VIEW_PATH = "secured/inventory/warehouses";
     private final String QUERY_VIEW_PATH = REL_VIEW_PATH + "/query";
+    private final String QUERY_DETAIL_VIEW_PATH = REL_VIEW_PATH + "/detail_query";
     private final String FORM_VIEW_PATH = REL_VIEW_PATH + "/form";
 
     @Autowired
@@ -59,11 +62,21 @@ public class WarehouseController {
     }
 
     @Script("/static/js/views/warehouses/query.js")
+    @Layout("table")
+    @RequestMapping(value = DETAIL_PATH, method = RequestMethod.GET)
+    public String queryDetails(Model model,@RequestParam(value = "id", required = true) Long id) {
+        model.addAttribute("warehouseDetails", new WarehouseDetailView());
+
+        return QUERY_DETAIL_VIEW_PATH;
+    }
+
+    @Script("/static/js/views/warehouses/query.js")
+    @Layout("table")
     @RequestMapping(value = ADD_PATH, method = RequestMethod.GET)
     public String add(Model model) {
         model.addAttribute("breadcrumb", messageSource.getMessage("breadcrumb.add", null, Locale.getDefault()));
         model.addAttribute("title", messageSource.getMessage("page.product.add.title", null, Locale.getDefault()));
-        model.addAttribute("productView", new ProductView());
+        model.addAttribute("warehouseView", new WarehouseView());
 
         return FORM_VIEW_PATH;
     }

@@ -39,7 +39,7 @@
                 </div>
                 <div class="panel-body">
                     <div class="col-md-6">
-                        <form role="form" action="#" th:action="@{/inventario/categorias/nueva}"
+                        <form role="form" action="#" th:action="@{/clientes/agregar}"
                               th:object="${clientView}" method="post">
 
                             <div class="form-group">
@@ -49,7 +49,7 @@
                                 <input class="form-control" type="text" th:field="*{person.firstname}" placeholder="Nombre del Cliente"/>
 
                                 <div th:if="${#fields.hasErrors('person.firstname')}" th:errors="*{person.firstname}">
-                                    Name Error
+                                    Nombre Error
                                 </div>
                             </div>
 

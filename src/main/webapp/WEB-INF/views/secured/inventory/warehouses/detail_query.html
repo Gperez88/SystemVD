@@ -2,7 +2,7 @@
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8"/>
-    <title>Almacenes</title>
+    <title>Detalle Almacén</title>
 </head>
 <body>
 
@@ -12,7 +12,11 @@
             <li><a href="/inicio">
                 <i class="fa fa-home" aria-hidden="true"></i>
             </a></li>
-            <li class="active">Almacenes</li>
+            <li><a href="/inventario/almacenes">
+                <span th:text="#{breadcrumb.warehouse}">Almacenes</span>
+            </a></li>
+            <li class="active">Detalle</li>
+
         </ol>
     </div><!--/.row-->
 
@@ -20,15 +24,15 @@
         <div class="col-lg-12">
             <h1 class="page-header">
                 <i class="fa fa-industry"></i>
-                <span th:text="#{page.warehouse.query.title}">Almacenes</span>
+                <span th:text="#{page.warehouse.detail-query.title}">Detalle Almacén</span> <b><span th:text="${name}">Principal</span></b>
             </h1>
         </div>
     </div><!--/.row-->
 
     <div class="row margin-bottom7">
         <div class="col-lg-12">
-            <a href="/inventario/almacenes/agregar" class="btn btn-primary pull-right">
-                <span th:text="#{page.warehouse.action.add}">Nuevo Almacén</span>
+            <a href="/inventario/almacenes/detalle/agregar" class="btn btn-primary pull-right">
+                <span th:text="#{page.warehouse.action.detail.add}">Nuevo Almacén</span>
             </a>
         </div>
     </div>
@@ -36,11 +40,11 @@
     <div class="row">
         <div class="col-lg-12">
             <div class="panel panel-default">
-                <div class="alert bg-info" role="alert"  th:if="${#lists.isEmpty(warehouses)}">
+                <div class="alert bg-info" role="alert"  th:if="${#lists.isEmpty(warehouseDetails)}">
                     <i class="fa fa-info-circle fa-lg" aria-hidden="true"></i>
                     <span th:text="#{page.warehouse.no-data-message}"></span> <b th:text="#{page.warehouse.action.add}"></b>
                 </div>
-                <div class="panel-body" th:if="${not #lists.isEmpty(warehouses)}">
+                <div class="panel-body" th:if="${not #lists.isEmpty(warehouseDetails)}">
                     <table data-toggle="table" data-locale="es-ES" data-pagination="true" data-sort-name="name" data-sort-order="desc">
                         <thead>
                         <tr>
@@ -56,8 +60,7 @@
                         <tbody>
                         <tr th:each="warehouse : ${warehouses}">
                             <td>
-                                <a type="button" class="btn btn-sm btn-default"
-                                   th:href="@{/inventario/almacenes/detalle(id=${warehouse.id})}">
+                                <a type="button" class="btn btn-sm btn-default">
                                     <i class="fa fa-chevron-right"></i>
                                 </a>
                             </td>

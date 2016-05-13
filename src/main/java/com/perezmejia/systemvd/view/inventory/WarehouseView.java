@@ -6,6 +6,8 @@ import com.gp89developers.mapperobject.ParsableObject;
 import com.gp89developers.mapperobject.utils.CollectionUtils;;
 import com.perezmejia.systemvd.entity.inventory.Warehouse;
 
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
@@ -19,8 +21,12 @@ public class WarehouseView extends ParsableObject<Warehouse, WarehouseView> {
     @Mapping
     private Long id;
     @Mapping
+    @NotNull
+    @Size(max = 100)
     private String name;
     @Mapping
+    @NotNull
+    @Size(max = 300)
     private String description;
     @Mapping
     private Timestamp createDate;
@@ -29,7 +35,7 @@ public class WarehouseView extends ParsableObject<Warehouse, WarehouseView> {
     @Mapping
     private int active;
     //manual mapper
-    private List<WarehouseDetailView> warehouseDetailViews;
+    private List<WarehouseDetailView> warehouseDetails;
 
     public WarehouseView(){}
 
@@ -61,12 +67,12 @@ public class WarehouseView extends ParsableObject<Warehouse, WarehouseView> {
         this.description = description;
     }
 
-    public List<WarehouseDetailView> getWarehouseDetailViews() {
-        return warehouseDetailViews;
+    public List<WarehouseDetailView> getWarehouseDetails() {
+        return warehouseDetails;
     }
 
-    public void setWarehouseDetailViews(List<WarehouseDetailView> warehouseDetailViews) {
-        this.warehouseDetailViews = warehouseDetailViews;
+    public void setWarehouseDetails(List<WarehouseDetailView> warehouseDetails) {
+        this.warehouseDetails = warehouseDetails;
     }
 
     public Timestamp getCreateDate() {
