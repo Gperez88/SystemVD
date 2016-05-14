@@ -2,6 +2,7 @@ package com.perezmejia.systemvd.controller;
 
 import com.perezmejia.systemvd.config.template.Layout;
 import com.perezmejia.systemvd.config.template.Script;
+import com.perezmejia.systemvd.entity.inventory.Warehouse;
 import com.perezmejia.systemvd.service.inventory.ProductService;
 import com.perezmejia.systemvd.service.inventory.WarehouseService;
 import com.perezmejia.systemvd.view.inventory.ProductView;
@@ -27,15 +28,12 @@ import java.util.Locale;
 
 @Controller
 public class WarehouseController {
-
     private final String REL_PATH = "/inventario/almacenes";
-    private final String DETAIL_PATH = REL_PATH + "/detalle";
     private final String ADD_PATH = REL_PATH + "/agregar";
     private final String EDIT_PATH = REL_PATH + "/editar";
 
     private final String REL_VIEW_PATH = "secured/inventory/warehouses";
     private final String QUERY_VIEW_PATH = REL_VIEW_PATH + "/query";
-    private final String QUERY_DETAIL_VIEW_PATH = REL_VIEW_PATH + "/detail_query";
     private final String FORM_VIEW_PATH = REL_VIEW_PATH + "/form";
 
     @Autowired
@@ -43,14 +41,6 @@ public class WarehouseController {
 
     @Autowired
     private WarehouseService warehouseService;
-
-    @Autowired
-    private ProductService productService;
-
-    @ModelAttribute("allProducts")
-    public List<ProductView> populateProductList() {
-        return productService.findAll();
-    }
 
     @Script("/static/js/views/warehouses/query.js")
     @Layout("table")
@@ -63,43 +53,34 @@ public class WarehouseController {
 
     @Script("/static/js/views/warehouses/query.js")
     @Layout("table")
-    @RequestMapping(value = DETAIL_PATH, method = RequestMethod.GET)
-    public String queryDetails(Model model,@RequestParam(value = "id", required = true) Long id) {
-        model.addAttribute("warehouseDetails", new WarehouseDetailView());
-
-        return QUERY_DETAIL_VIEW_PATH;
-    }
-
-    @Script("/static/js/views/warehouses/query.js")
-    @Layout("table")
     @RequestMapping(value = ADD_PATH, method = RequestMethod.GET)
     public String add(Model model) {
         model.addAttribute("breadcrumb", messageSource.getMessage("breadcrumb.add", null, Locale.getDefault()));
         model.addAttribute("title", messageSource.getMessage("page.product.add.title", null, Locale.getDefault()));
-        model.addAttribute("warehouseView", new WarehouseView());
+        model.addAttribute("warehouse", new WarehouseView());
 
         return FORM_VIEW_PATH;
     }
 
     @RequestMapping(value = EDIT_PATH, method = RequestMethod.GET)
     public String edit(Model model, @RequestParam(value = "id", required = true) Long id) {
-        WarehouseView warehouseView = warehouseService.findById(id);
+        WarehouseView warehouse = warehouseService.findById(id);
 
         model.addAttribute("breadcrumb", messageSource.getMessage("breadcrumb.edit", null, Locale.getDefault()));
         model.addAttribute("title", messageSource.getMessage("page.product.edit.title", null, Locale.getDefault()));
-        model.addAttribute("warehouseView", warehouseView);
+        model.addAttribute("warehouse", warehouse);
 
         return FORM_VIEW_PATH;
     }
 
     @Script("/static/js/views/warehouses/query.js")
     @RequestMapping(value = {ADD_PATH, EDIT_PATH}, method = RequestMethod.POST)
-    public String save(@ModelAttribute("warehouseView") @Valid WarehouseView warehouseView, BindingResult bindingResult) {
+    public String save(@ModelAttribute("warehouse") @Valid WarehouseView warehouse, BindingResult bindingResult) {
 
         if (bindingResult.hasErrors()) {
             return FORM_VIEW_PATH;
         }
-        warehouseService.save(warehouseView);
+        warehouseService.save(warehouse);
 
         return "redirect:" + REL_PATH;
     }

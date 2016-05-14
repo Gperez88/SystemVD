@@ -1073,6 +1073,9 @@ h1.page-header {
 .margin-bottom17 { margin-bottom:17px !important; }
 .margin-bottom30 { margin-bottom:30px !important; }
 
+.bootstrap-select button.btn.dropdown-toggle.btn-default {
+    background-color: white !important;
+}
 
 
 

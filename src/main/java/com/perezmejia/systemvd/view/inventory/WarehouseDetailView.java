@@ -13,9 +13,9 @@ import com.perezmejia.systemvd.entity.inventory.WarehouseDetail;
 public class WarehouseDetailView extends ParsableObject<WarehouseDetail, WarehouseDetailView> {
     @Mapping
     private Long id;
-    @Mapping
-    private WarehouseView warehouseView;
-    @Mapping
+    @Mapping(otherType = true)
+    private WarehouseView warehouse;
+    @Mapping(otherType = true)
     private ProductView product;
     @Mapping
     private Long stock;
@@ -34,12 +34,12 @@ public class WarehouseDetailView extends ParsableObject<WarehouseDetail, Warehou
         this.id = id;
     }
 
-    public WarehouseView getWarehouseView() {
-        return warehouseView;
+    public WarehouseView getWarehouse() {
+        return warehouse;
     }
 
-    public void setWarehouseView(WarehouseView warehouseView) {
-        this.warehouseView = warehouseView;
+    public void setWarehouse(WarehouseView warehouse) {
+        this.warehouse = warehouse;
     }
 
     public ProductView getProduct() {

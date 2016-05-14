@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml" xmlns="http://www.w3.org/1999/html">
 <head>
     <meta charset="UTF-8"/>
     <title>Detalle Almacén</title>
@@ -24,68 +24,113 @@
         <div class="col-lg-12">
             <h1 class="page-header">
                 <i class="fa fa-industry"></i>
-                <span th:text="#{page.warehouse.detail-query.title}">Detalle Almacén</span> <b><span th:text="${name}">Principal</span></b>
+                <span th:text="#{page.warehouse.detail.query.title}">Detalle Almacén</span> <b><span
+                    th:text="${warehouse.name}">Principal</span></b>
             </h1>
         </div>
     </div><!--/.row-->
 
     <div class="row margin-bottom7">
         <div class="col-lg-12">
-            <a href="/inventario/almacenes/detalle/agregar" class="btn btn-primary pull-right">
-                <span th:text="#{page.warehouse.action.detail.add}">Nuevo Almacén</span>
-            </a>
+            <button type="button" class="btn btn-primary pull-right" data-toggle="modal"
+                    data-target="#addProductModal">
+                <span th:text="#{page.warehouse.detail.action.add}">Agregar Producto</span>
+            </button>
         </div>
     </div>
 
     <div class="row">
         <div class="col-lg-12">
             <div class="panel panel-default">
-                <div class="alert bg-info" role="alert"  th:if="${#lists.isEmpty(warehouseDetails)}">
+                <div class="alert bg-info" role="alert" th:if="${#lists.isEmpty(warehouse.warehouseDetails)}">
                     <i class="fa fa-info-circle fa-lg" aria-hidden="true"></i>
-                    <span th:text="#{page.warehouse.no-data-message}"></span> <b th:text="#{page.warehouse.action.add}"></b>
+                    <span th:text="#{page.warehouse.detail.no-data-message}"></span> <b
+                        th:text="#{page.warehouse.detail.action.add}"></b>
                 </div>
-                <div class="panel-body" th:if="${not #lists.isEmpty(warehouseDetails)}">
-                    <table data-toggle="table" data-locale="es-ES" data-pagination="true" data-sort-name="name" data-sort-order="desc">
-                        <thead>
-                        <tr>
-                            <th></th>
-                            <th data-field="id" data-sortable="true"><span th:text="#{global.id}">ID</span></th>
-                            <th data-field="name" data-sortable="true"><span th:text="#{global.name}">Nombre</span></th>
-                            <th data-field="description" data-sortable="true"><span th:text="#{global.description}">Descripción</span></th>
-                            <th data-field="create-date" data-sortable="true"><span th:text="#{global.create-date}">Creado En</span></th>
-                            <th data-field="modify-date" data-sortable="true"><span th:text="#{global.modify-date}">Modificado En</span></th>
-                            <th><span th:text="#{global.action}">Acción</span></th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        <tr th:each="warehouse : ${warehouses}">
-                            <td>
-                                <a type="button" class="btn btn-sm btn-default">
-                                    <i class="fa fa-chevron-right"></i>
-                                </a>
-                            </td>
-                            <td th:text="${warehouse.id}"></td>
-                            <td th:text="${warehouse.name}"></td>
-                            <td th:text="${warehouse.description}"></td>
-                            <td th:text="${#calendars.format(warehouse.createDate,'dd/MM/yyyy hh:mm a')}"></td>
-                            <td th:text="${#calendars.format(warehouse.modifyDate,'dd/MM/yyyy hh:mm a')}"></td>
-                            <td>
-                                <a type="button" class="btn btn-sm btn-info"
-                                   th:href="@{/inventario/almacenes/editar(id=${warehouse.id})}">
-                                    <i class="fa fa-edit"></i>
-                                </a>
-                                <a type="button" class="btn btn-sm btn-danger">
-                                    <i class="fa fa-trash"></i>
-                                </a>
-                            </td>
-                        </tr>
-                        </tbody>
-                    </table>
+                <div class="panel-body" th:if="${not #lists.isEmpty(warehouse.warehouseDetails)}">
+                    <div class="bootstrap-table">
+                        <table data-toggle="table" data-locale="es-ES" data-pagination="true" data-sort-name="name" data-search="true"
+                               data-sort-order="desc">
+                            <thead>
+                            <tr>
+                                <th data-field="id" data-sortable="true"><span th:text="#{global.id}">ID</span></th>
+                                <th data-field="product" data-sortable="true"><span
+                                        th:text="#{global.product}">Producto</span></th>
+                                <th data-field="stock" data-sortable="true"><span
+                                        th:text="#{global.stock}">Cantidad</span></th>
+                                <th><span th:text="#{global.action}">Acción</span></th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr th:each="warehouseDetail : ${warehouse.warehouseDetails}">
+                                <td th:text="${warehouseDetail.id}"></td>
+                                <td th:text="${warehouseDetail.product.name}"></td>
+                                <td th:text="${warehouseDetail.stock}"></td>
+                                <td>
+                                    <a type="button" class="btn btn-xs btn btn-primary"
+                                       th:href="@{/inventario/almacenes/detalle/editar(id=${warehouseDetail.id})}">
+                                        <i class="fa fa-edit"></i>
+                                    </a>
+                                    <a type="button" class="btn btn-xs btn-danger">
+                                        <i class="fa fa-trash"></i>
+                                    </a>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
         </div>
     </div><!--/.row-->
+    <div class="modal fade" id="addProductModal" tabindex="-1" role="dialog"
+         aria-labelledby="addProductModalLabel" th:fragment="modal">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <form role="form" action="#" th:action="@{/inventario/almacenes/detalle/agregar}"
+                      th:object="${warehouseDetail}" method="post">
+                    <input type="hidden" th:field="*{warehouse.id}"/>
 
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                                aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title" id="addProductModalLabel"><span
+                                th:text="#{page.warehouse.detail.action.add}">Agregar Producto</span></h4>
+                    </div>
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <label>
+                                <span th:text="#{global.product}">Producto</span>
+                            </label>
+                            <select th:field="*{product.id}"
+                                    class="selectpicker form-control" data-live-search="true">
+                                <option th:each="product : ${allProducts}"
+                                        th:value="${product.id}"
+                                        th:text="${product.name}">Seleccione un Producto
+                                </option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label>
+                                <span th:text="#{global.stock}">Cantidad</span>
+                            </label>
+                            <input class="form-control" type="number" th:field="*{stock}"/>
+
+                            <div th:if="${#fields.hasErrors('stock')}" th:errors="*{stock}">
+                                Precio Error
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar
+                        </button>
+                        <button type="submit" class="btn btn-primary">Agregar</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div><!--/.modal -->
 </div><!--/.main-->
 </body>
 </html>

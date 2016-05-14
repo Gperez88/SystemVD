@@ -1,6 +1,11 @@
 package com.perezmejia.systemvd.entity;
 
+import org.hibernate.annotations.*;
+
 import javax.persistence.*;
+import javax.persistence.CascadeType;
+import javax.persistence.Entity;
+import javax.persistence.Table;
 import java.sql.Timestamp;
 
 /**
@@ -39,6 +44,7 @@ public class Client {
 
     @Basic
     @Column(name = "create_date")
+    @CreationTimestamp
     public Timestamp getCreateDate() {
         return createDate;
     }
@@ -49,6 +55,7 @@ public class Client {
 
     @Basic
     @Column(name = "modify_date")
+    @UpdateTimestamp
     public Timestamp getModifyDate() {
         return modifyDate;
     }
@@ -57,8 +64,8 @@ public class Client {
         this.modifyDate = modifyDate;
     }
 
-    @OneToOne
-    @JoinColumn(name = "person_id")
+    @OneToOne(cascade = CascadeType.ALL, targetEntity = Person.class)
+    @JoinColumn(name = "person_id", updatable = true)
     public Person getPerson() {
         return person;
     }

@@ -60,30 +60,30 @@ public class ClientController {
     public String add(Model model) {
         model.addAttribute("breadcrumb", messageSource.getMessage("breadcrumb.add", null, Locale.getDefault()));
         model.addAttribute("title", messageSource.getMessage("page.client.add.title", null, Locale.getDefault()));
-        model.addAttribute("clientView", new ClientView());
+        model.addAttribute("client", new ClientView());
 
         return FORM_VIEW_PATH;
     }
 
     @RequestMapping(value = EDIT_PATH, method = RequestMethod.GET)
     public String edit(Model model, @RequestParam(value = "id", required = true) Long id) {
-        ClientView clientView = clientService.findById(id);
+        ClientView client = clientService.findById(id);
 
         model.addAttribute("breadcrumb", messageSource.getMessage("breadcrumb.edit", null, Locale.getDefault()));
         model.addAttribute("title", messageSource.getMessage("page.client.edit.title", null, Locale.getDefault()));
-        model.addAttribute("clientView", clientView);
+        model.addAttribute("client", client);
 
         return FORM_VIEW_PATH;
     }
 
     @Script("/static/js/views/clients/query.js")
     @RequestMapping(value = {ADD_PATH, EDIT_PATH}, method = RequestMethod.POST)
-    public String save(@ModelAttribute("clientView") @Valid ClientView clientView, BindingResult bindingResult) {
+    public String save(@ModelAttribute("client") @Valid ClientView client, BindingResult bindingResult) {
 
         if (bindingResult.hasErrors()) {
             return FORM_VIEW_PATH;
         }
-        clientService.save(clientView);
+        clientService.save(client);
 
         return "redirect:" + REL_PATH;
     }

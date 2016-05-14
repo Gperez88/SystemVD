@@ -24,8 +24,6 @@ public class ProductView extends ParsableObject<Product, ProductView> {
     private int inventoryMin;
     @Mapping
     private float price;
-    @Mapping
-    private String unit;
     @Mapping(otherType = true)
     private CategoryView category;
     @Mapping
@@ -80,14 +78,6 @@ public class ProductView extends ParsableObject<Product, ProductView> {
 
     public void setPrice(float price) {
         this.price = price;
-    }
-
-    public String getUnit() {
-        return unit;
-    }
-
-    public void setUnit(String unit) {
-        this.unit = unit;
     }
 
     public CategoryView getCategory() {

@@ -1,5 +1,8 @@
 package com.perezmejia.systemvd.entity.inventory;
 
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
+
 import javax.persistence.*;
 import java.sql.Timestamp;
 
@@ -15,7 +18,6 @@ public class Product {
     private String description;
     private int inventoryMin;
     private float price;
-    private String unit;
     private Category category;
     private Timestamp createDate;
     private Timestamp modifyDate;
@@ -72,16 +74,6 @@ public class Product {
         this.price = price;
     }
 
-    @Basic
-    @Column(name = "unit")
-    public String getUnit() {
-        return unit;
-    }
-
-    public void setUnit(String unit) {
-        this.unit = unit;
-    }
-
     @ManyToOne
     @JoinColumn(name = "category_id")
     public Category getCategory() {
@@ -94,6 +86,7 @@ public class Product {
 
     @Basic
     @Column(name = "create_date")
+    @CreationTimestamp
     public Timestamp getCreateDate() {
         return createDate;
     }
@@ -104,6 +97,7 @@ public class Product {
 
     @Basic
     @Column(name = "modify_date")
+    @UpdateTimestamp
     public Timestamp getModifyDate() {
         return modifyDate;
     }

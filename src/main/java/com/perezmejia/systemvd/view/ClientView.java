@@ -20,7 +20,7 @@ public class ClientView extends ParsableObject<Client, ClientView> {
     private Timestamp createDate;
     @Mapping
     private Timestamp modifyDate;
-    @Mapping
+    @Mapping(otherType = true)
     private PersonView person;
 
     public ClientView() {

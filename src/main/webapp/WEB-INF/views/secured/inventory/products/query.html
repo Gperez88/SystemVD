@@ -68,11 +68,11 @@
                             <td th:text="${#calendars.format(product.createDate,'dd/MM/yyyy hh:mm a')}"></td>
                             <td th:text="${#calendars.format(product.modifyDate,'dd/MM/yyyy hh:mm a')}"></td>
                             <td>
-                                <a type="button" class="btn btn-sm btn-info"
+                                <a type="button" class="btn btn-xs btn-info"
                                    th:href="@{/inventario/productos/editar(id=${product.id})}">
                                     <i class="fa fa-edit"></i>
                                 </a>
-                                <a type="button" class="btn btn-sm btn-danger">
+                                <a type="button" class="btn btn-xs btn-danger">
                                     <i class="fa fa-trash"></i>
                                 </a>
                             </td>

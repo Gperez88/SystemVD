@@ -40,7 +40,7 @@
                 <div class="panel-body">
                     <div class="col-md-6">
                         <form role="form" action="#" th:action="@{/inventario/productos/agregar}"
-                              th:object="${productView}" method="post">
+                              th:object="${product}" method="post">
 
                             <div class="form-group">
                                 <label>
@@ -90,9 +90,9 @@
                                 <label>
                                     <span th:text="#{global.category}">Categoría</span>
                                 </label>
-                                <select th:field="*{category}"
+                                <select th:field="*{category.id}"
                                         class="form-control">
-                                    <option th:each="category : ${allCategory}"
+                                    <option th:each="category : ${allCategories}"
                                             th:value="${category.id}"
                                             th:text="${category.name}">Seleccione una Categoría
                                     </option>

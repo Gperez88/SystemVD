@@ -48,7 +48,7 @@
                             <th data-field="first-name" data-sortable="true"><span th:text="#{global.first-name}">Nombre</span></th>
                             <th data-field="last-name" data-sortable="true"><span th:text="#{global.last-name}">Apellido</span></th>
                             <th data-field="sex" data-sortable="true"><span th:text="#{global.sex}">Sexo</span></th>
-                            <th data-field="email" data-sortable="true"><span th:text="#{global.email">Email</span></th>
+                            <th data-field="email" data-sortable="true"><span th:text="#{global.email}">Email</span></th>
                             <th data-field="create-date" data-sortable="true"><span th:text="#{global.create-date}">Creado En</span></th>
                             <th data-field="modify-date" data-sortable="true"><span th:text="#{global.modify-date}">Modificado En</span></th>
                             <th><span th:text="#{global.action}">Acción</span></th>
@@ -64,11 +64,11 @@
                             <td th:text="${#calendars.format(client.createDate,'dd/MM/yyyy hh:mm a')}"></td>
                             <td th:text="${#calendars.format(client.modifyDate,'dd/MM/yyyy hh:mm a')}"></td>
                             <td>
-                                <a type="button" class="btn btn-sm btn-info"
+                                <a type="button" class="btn btn-xs btn-info"
                                    th:href="@{/clientes/editar(id=${client.id})}">
                                     <i class="fa fa-edit"></i>
                                 </a>
-                                <a type="button" class="btn btn-sm btn-danger">
+                                <a type="button" class="btn btn-xs btn-danger">
                                     <i class="fa fa-trash"></i>
                                 </a>
                             </td>

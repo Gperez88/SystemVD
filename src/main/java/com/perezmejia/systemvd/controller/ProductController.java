@@ -44,7 +44,7 @@ public class ProductController {
     @Autowired
     private CategoryService categoryService;
 
-    @ModelAttribute("allCategory")
+    @ModelAttribute("allCategories")
     public List<CategoryView> populateCategoryList() {
         return categoryService.findAll();
     }
@@ -61,32 +61,35 @@ public class ProductController {
     @Script("/static/js/views/products/query.js")
     @RequestMapping(value = ADD_PATH, method = RequestMethod.GET)
     public String add(Model model) {
+        ProductView product = new ProductView();
+        product.setActive(1);
+
         model.addAttribute("breadcrumb", messageSource.getMessage("breadcrumb.add", null, Locale.getDefault()));
         model.addAttribute("title", messageSource.getMessage("page.product.add.title", null, Locale.getDefault()));
-        model.addAttribute("productView", new ProductView());
+        model.addAttribute("product", product);
 
         return FORM_VIEW_PATH;
     }
 
     @RequestMapping(value = EDIT_PATH, method = RequestMethod.GET)
     public String edit(Model model, @RequestParam(value = "id", required = true) Long id) {
-        ProductView productView = productService.findById(id);
+        ProductView product = productService.findById(id);
 
         model.addAttribute("breadcrumb", messageSource.getMessage("breadcrumb.edit", null, Locale.getDefault()));
         model.addAttribute("title", messageSource.getMessage("page.product.edit.title", null, Locale.getDefault()));
-        model.addAttribute("productView", productView);
+        model.addAttribute("product", product);
 
         return FORM_VIEW_PATH;
     }
 
     @Script("/static/js/views/products/query.js")
     @RequestMapping(value = {ADD_PATH, EDIT_PATH}, method = RequestMethod.POST)
-    public String save(@ModelAttribute("productView") @Valid ProductView productView, BindingResult bindingResult) {
+    public String save(@ModelAttribute("product") @Valid ProductView product, BindingResult bindingResult) {
 
         if (bindingResult.hasErrors()) {
             return FORM_VIEW_PATH;
         }
-        productService.save(productView);
+        productService.save(product);
 
         return "redirect:" + REL_PATH;
     }

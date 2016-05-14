@@ -37,9 +37,10 @@ public class WarehouseView extends ParsableObject<Warehouse, WarehouseView> {
     //manual mapper
     private List<WarehouseDetailView> warehouseDetails;
 
-    public WarehouseView(){}
+    public WarehouseView() {
+    }
 
-    public WarehouseView(Warehouse warehouse){
+    public WarehouseView(Warehouse warehouse) {
         load(warehouse);
     }
 
@@ -107,6 +108,8 @@ public class WarehouseView extends ParsableObject<Warehouse, WarehouseView> {
             List<WarehouseDetailView> warehouseDetailViews = new ArrayList<>();
             warehouse.getWarehouseDetails()
                     .forEach(warehouseDetail -> warehouseDetailViews.add(new WarehouseDetailView(warehouseDetail)));
+
+            warehouseView.setWarehouseDetails(warehouseDetailViews);
         }
 
         return warehouseView;

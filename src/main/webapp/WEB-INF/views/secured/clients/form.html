@@ -2,7 +2,7 @@
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8"/>
-    <title>Categorias</title>
+    <title>Cliente</title>
 </head>
 <body>
 
@@ -40,8 +40,9 @@
                 <div class="panel-body">
                     <div class="col-md-6">
                         <form role="form" action="#" th:action="@{/clientes/agregar}"
-                              th:object="${clientView}" method="post">
-
+                              th:object="${client}" method="post">
+                            <input class="form-control" type="hidden" th:field="*{id}"/>
+                            <input class="form-control" type="hidden" th:field="*{person.id}"/>
                             <div class="form-group">
                                 <label>
                                     <span th:text="#{global.name}">Nombre</span>
@@ -68,7 +69,7 @@
                                 <label>
                                     <span th:text="#{global.birthdate}">Fecha de Nacimiento</span>
                                 </label>
-                                <input class="form-control" type="date" th:field="*{person.birthdate}"/>
+                                <input class="form-control" id="birthdate" type="date" th:field="*{person.birthdate}"/>
 
                                 <div th:if="${#fields.hasErrors('person.birthdate')}" th:errors="*{person.birthdate}">
                                     Fecha Nacimiento Error

@@ -2,6 +2,7 @@ package com.perezmejia.systemvd.service.impl;
 
 import com.perezmejia.systemvd.entity.Client;
 import com.perezmejia.systemvd.repository.ClientRepository;
+import com.perezmejia.systemvd.repository.PersonRepository;
 import com.perezmejia.systemvd.service.ClientService;
 import com.perezmejia.systemvd.view.ClientView;
 import org.springframework.beans.factory.annotation.Autowired;
