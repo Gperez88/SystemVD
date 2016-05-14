@@ -1,6 +1,7 @@
 package com.perezmejia.systemvd.entity;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.sql.Date;
 
 /**

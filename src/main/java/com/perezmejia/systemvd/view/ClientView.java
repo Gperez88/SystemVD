@@ -5,6 +5,7 @@ import com.gp89developers.mapperobject.Mapping;
 import com.gp89developers.mapperobject.ParsableObject;
 import com.perezmejia.systemvd.entity.Client;
 
+import javax.validation.constraints.NotNull;
 import java.sql.Timestamp;
 
 /**
@@ -15,12 +16,14 @@ public class ClientView extends ParsableObject<Client, ClientView> {
     @Mapping
     private Long id;
     @Mapping
+    @NotNull
     private int enabled;
     @Mapping
     private Timestamp createDate;
     @Mapping
     private Timestamp modifyDate;
     @Mapping(otherType = true)
+    @NotNull
     private PersonView person;
 
     public ClientView() {

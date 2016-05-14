@@ -95,7 +95,6 @@ public class AppConfig extends WebMvcConfigurerAdapter {
      * Enabled Bean Validator
      *****************************************************************/
 //    @Bean(name = "validator")
-//    @Primary
 //    public LocalValidatorFactoryBean getLocalValidatorFactoryBean() {
 //        LocalValidatorFactoryBean validatorFactoryBean = new LocalValidatorFactoryBean();
 //        validatorFactoryBean.setValidationMessageSource(getMessageSource());
@@ -103,7 +102,6 @@ public class AppConfig extends WebMvcConfigurerAdapter {
 //    }
 //
 //    @Override
-//    @Primary
 //    public Validator getValidator() {
 //        return getLocalValidatorFactoryBean();
 //    }

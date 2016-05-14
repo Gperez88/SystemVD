@@ -2,9 +2,11 @@ package com.perezmejia.systemvd.controller;
 
 import com.perezmejia.systemvd.config.template.Layout;
 import com.perezmejia.systemvd.config.template.Script;
+import com.perezmejia.systemvd.helper.DateUtils;
 import com.perezmejia.systemvd.service.ClientService;
 import com.perezmejia.systemvd.view.ClientView;
 import com.perezmejia.systemvd.view.SexView;
+import com.perezmejia.systemvd.view.StatusView;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
 import org.springframework.stereotype.Controller;
@@ -16,7 +18,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.validation.Valid;
+import java.sql.Timestamp;
+import java.time.LocalDate;
 import java.util.Arrays;
+import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
@@ -46,6 +51,11 @@ public class ClientController {
         return Arrays.asList(SexView.values());
     }
 
+    @ModelAttribute("allStatus")
+    public List<StatusView> populateStatusList() {
+        return Arrays.asList(StatusView.values());
+    }
+
     @Script("/static/js/views/clients/query.js")
     @Layout("table")
     @RequestMapping(value = REL_PATH, method = RequestMethod.GET)
@@ -58,9 +68,13 @@ public class ClientController {
     @Script("/static/js/views/clients/query.js")
     @RequestMapping(value = ADD_PATH, method = RequestMethod.GET)
     public String add(Model model) {
+        ClientView client = new ClientView();
+        client.setEnabled(StatusView.ACTIVO.getId());
+        client.setCreateDate(new Timestamp(DateUtils.getNow()));
+
         model.addAttribute("breadcrumb", messageSource.getMessage("breadcrumb.add", null, Locale.getDefault()));
         model.addAttribute("title", messageSource.getMessage("page.client.add.title", null, Locale.getDefault()));
-        model.addAttribute("client", new ClientView());
+        model.addAttribute("client", client);
 
         return FORM_VIEW_PATH;
     }
