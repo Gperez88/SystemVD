@@ -22,6 +22,77 @@
         </div>
     </div><!--/.row-->
 
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <div class="col-log-12">
+                        <form role="form" action="#" th:action="@{/venta/buscar}" method="get">
+                            <div class="input-group">
+                                <input class="form-control" type="text" name="client" id="autocomplete"
+                                       placeholder="Ingrese el nombre del cliente"/>
+                                <span class="input-group-btn">
+                                    <button class="btn btn-default" type="button">
+                                        <i class="fa fa-search" aria-hidden="true"></i>
+                                    </button>
+                                </span>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <form role="form" action="#" th:action="@{/venta/buscar}" method="post">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <span th:text="#{page.client.add.data-client}">Datos Cliente</span>
+                    </div>
+                    <div class="panel-body">
+                        <div class="col-lg-12">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>
+                                            <span th:text="#{global.name}">Nombre</span>
+                                        </label>
+                                        <input class="form-control" type="text" placeholder="Nombre del Cliente" readonly="readonly"/>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>
+                                            <span th:text="#{global.name}">Nombre</span>
+                                        </label>
+                                        <input class="form-control" type="text" placeholder="Nombre del Cliente" readonly="readonly"/>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <span th:text="#{page.client.add.data-client}">Datos Cliente</span>
+                    </div>
+                    <div class="panel-body">
+                        <div class="col-lg-12">
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+
 </div><!--/.main-->
 
 </body>

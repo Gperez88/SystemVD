@@ -41,7 +41,8 @@
                     <div class="col-md-6">
                         <form role="form" action="#" th:action="@{/inventario/almacenes/agregar}"
                               th:object="${warehouse}" method="post">
-
+                            <input class="form-control" type="hidden" th:field="*{id}"/>
+                            <input class="form-control" type="hidden" th:field="*{createDate}"/>
                             <div class="form-group">
                                 <label>
                                     <span th:text="#{global.name}">Nombre</span>

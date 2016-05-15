@@ -37,4 +37,9 @@ public class ClientServiceImpl implements ClientService {
         Client client = clientView.parse();
         clientRepository.save(client);
     }
+
+    @Override
+    public List<String> findAllClientName(String value) {
+        return clientRepository.findAllClientName(value);
+    }
 }

@@ -1,10 +1,8 @@
 package com.perezmejia.systemvd.service.inventory.impl;
 
-import com.perezmejia.systemvd.entity.inventory.Product;
 import com.perezmejia.systemvd.entity.inventory.Warehouse;
-import com.perezmejia.systemvd.repository.inventory.WarehouseRepository;
+import com.perezmejia.systemvd.repository.inventory.SaleRepositoruy;
 import com.perezmejia.systemvd.service.inventory.WarehouseService;
-import com.perezmejia.systemvd.view.inventory.ProductView;
 import com.perezmejia.systemvd.view.inventory.WarehouseView;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -19,7 +17,7 @@ import java.util.List;
 public class WarehouseServiceImpl implements WarehouseService {
 
     @Autowired
-    private WarehouseRepository warehouseRepository;
+    private SaleRepositoruy warehouseRepository;
 
     @Override
     public List<WarehouseView> findAll() {

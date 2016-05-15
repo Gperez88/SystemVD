@@ -80,6 +80,7 @@ public class WarehouseController {
         if (bindingResult.hasErrors()) {
             return FORM_VIEW_PATH;
         }
+
         warehouseService.save(warehouse);
 
         return "redirect:" + REL_PATH;

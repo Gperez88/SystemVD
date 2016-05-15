@@ -41,7 +41,8 @@
                     <span th:text="#{page.category.no-data-message}"></span> <b th:text="#{page.category.action.add}"></b>
                 </div>
                 <div class="panel-body" th:if="${not #lists.isEmpty(categories)}">
-                    <table data-toggle="table" data-locale="es-ES" data-pagination="true" data-sort-name="name" data-sort-order="desc">
+                    <table data-toggle="table" data-locale="es-ES" data-pagination="true" data-sort-name="name"
+                           data-sort-order="desc" data-search="true">
                         <thead>
                         <tr>
                             <th data-field="id" data-sortable="true"><span th:text="#{global.id}">ID</span></th>

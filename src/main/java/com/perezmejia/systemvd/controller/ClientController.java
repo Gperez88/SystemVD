@@ -4,26 +4,22 @@ import com.perezmejia.systemvd.config.template.Layout;
 import com.perezmejia.systemvd.config.template.Script;
 import com.perezmejia.systemvd.helper.DateUtils;
 import com.perezmejia.systemvd.service.ClientService;
+import com.perezmejia.systemvd.view.AutoCompleteData;
 import com.perezmejia.systemvd.view.ClientView;
 import com.perezmejia.systemvd.view.SexView;
 import com.perezmejia.systemvd.view.StatusView;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.sql.Timestamp;
 import java.time.LocalDate;
-import java.util.Arrays;
-import java.util.Date;
-import java.util.List;
-import java.util.Locale;
+import java.util.*;
 
 /**
  * Created by Guil on 4/29/2016.
@@ -35,6 +31,7 @@ public class ClientController {
     private final String REL_PATH = "/clientes";
     private final String ADD_PATH = REL_PATH + "/agregar";
     private final String EDIT_PATH = REL_PATH + "/editar";
+    private final String SEARCH_PATH = REL_PATH + "/clientnames";
 
     private final String REL_VIEW_PATH = "secured/clients";
     private final String QUERY_VIEW_PATH = REL_VIEW_PATH + "/query";
@@ -100,6 +97,17 @@ public class ClientController {
         clientService.save(client);
 
         return "redirect:" + REL_PATH;
+    }
+
+    @RequestMapping(value = SEARCH_PATH, method = RequestMethod.GET)
+    public
+    @ResponseBody
+    List<AutoCompleteData> getClientName(@RequestParam("value") String value) {
+        List<String> clientNames = clientService.findAllClientName("%"+value+"%");
+        List<AutoCompleteData> autoCompleteData = new ArrayList<>();
+        clientNames.forEach(client -> autoCompleteData.add(new AutoCompleteData(client, client)));
+
+        return autoCompleteData;
     }
 
 }

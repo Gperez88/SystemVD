@@ -43,7 +43,8 @@
                     <span th:text="#{page.product.no-data-message}"></span> <b th:text="#{page.product.action.add}"></b>
                 </div>
                 <div class="panel-body" th:if="${not #lists.isEmpty(products)}">
-                    <table data-toggle="table" data-locale="es-ES" data-pagination="true" data-sort-name="name" data-sort-order="desc">
+                    <table data-toggle="table" data-locale="es-ES" data-pagination="true" data-sort-name="name"
+                           data-sort-order="desc" data-search="true">
                         <thead>
                         <tr>
                             <th data-field="id" data-sortable="true"><span th:text="#{global.id}">ID</span></th>

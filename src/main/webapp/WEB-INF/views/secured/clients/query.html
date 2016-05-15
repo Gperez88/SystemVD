@@ -41,12 +41,13 @@
                     <span th:text="#{page.client.no-data-message}"></span> <b th:text="#{page.client.action.add}"></b>
                 </div>
                 <div class="panel-body" th:if="${not #lists.isEmpty(clients)}">
-                    <table data-toggle="table" data-locale="es-ES" data-pagination="true" data-sort-name="name" data-sort-order="desc">
+                    <table data-toggle="table" data-locale="es-ES" data-pagination="true" data-sort-name="name"
+                           data-sort-order="desc" data-search="true">
                         <thead>
                         <tr>
                             <th data-field="id" data-sortable="true"><span th:text="#{global.id}">ID</span></th>
-                            <th data-field="first-name" data-sortable="true"><span th:text="#{global.first-name}">Nombre</span></th>
-                            <th data-field="last-name" data-sortable="true"><span th:text="#{global.last-name}">Apellido</span></th>
+                            <th data-field="first-name" data-sortable="true"><span th:text="#{global.firstname}">Nombre</span></th>
+                            <th data-field="last-name" data-sortable="true"><span th:text="#{global.lastname}">Apellido</span></th>
                             <th data-field="sex" data-sortable="true"><span th:text="#{global.sex}">Sexo</span></th>
                             <th data-field="email" data-sortable="true"><span th:text="#{global.email}">Email</span></th>
                             <th data-field="create-date" data-sortable="true"><span th:text="#{global.create-date}">Creado En</span></th>

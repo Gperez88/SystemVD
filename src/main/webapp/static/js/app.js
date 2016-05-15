@@ -15,3 +15,23 @@ util.activeNavMenuLiById = function (navMenuLiId) {
 
     $(navMenuLiId).addClass('active');
 }
+
+$(function () {
+    $('.navbar-collapse-button').click(function () {
+        if ($(this).hasClass('menu-show')) {
+            $('.sidebar').animate({
+                left: "-=300"
+            }, 0, function () {
+                $('.main').removeClass('main-show').addClass('main-hide');
+            });
+            $(this).removeClass('menu-show').addClass('menu-hide');
+        } else {
+            $(".sidebar").animate({
+                left: "+=300"
+            }, 0, function () {
+                $('.main').removeClass('main-hide').addClass('main-show');
+            });
+            $(this).removeClass('menu-hide').addClass('menu-show');
+        }
+    })
+})
