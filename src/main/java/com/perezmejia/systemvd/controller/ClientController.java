@@ -87,8 +87,8 @@ public class ClientController {
     }
 
     @Script("/static/js/views/clients/query.js")
-    @RequestMapping(value = DELETE_PATH, method = RequestMethod.POST)
-    public String save(@ModelAttribute("clientId") @Valid ClientView client, BindingResult bindingResult) {
+    @RequestMapping(value = {ADD_PATH, EDIT_PATH}, method = RequestMethod.POST)
+    public String save(@ModelAttribute("client") @Valid ClientView client, BindingResult bindingResult) {
 
         if (bindingResult.hasErrors()) {
             return FORM_VIEW_PATH;
@@ -99,12 +99,9 @@ public class ClientController {
     }
 
     @Script("/static/js/views/clients/query.js")
-    @RequestMapping(value = {ADD_PATH, EDIT_PATH}, method = RequestMethod.POST)
-    public String delete(@RequestParam Long clientId, BindingResult bindingResult) {
+    @RequestMapping(value = DELETE_PATH, method = RequestMethod.POST)
+    public String delete(@RequestParam("clientId") Long clientId) {
 
-        if (bindingResult.hasErrors()) {
-            return QUERY_VIEW_PATH;
-        }
         clientService.delete(clientId);
 
         return "redirect:" + REL_PATH;
