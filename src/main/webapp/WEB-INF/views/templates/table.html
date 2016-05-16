@@ -7,7 +7,7 @@
 
     <link href="/static/css/bootstrap.min.css" rel="stylesheet"/>
     <link href="/static/css/theme-default.css" rel="stylesheet"/>
-    <link href="/static/css/bootstrap-table.css" rel="stylesheet"/>
+    <link href="/static/css/dataTables.bootstrap.min.css" rel="stylesheet"/>
     <link href="/static/css/bootstrap-select.min.css" rel="stylesheet"/>
     <link href="/static/css/jquery-ui.min.css" rel="stylesheet"/>
     <link href="/static/css/styles.css" rel="stylesheet"/>
@@ -37,11 +37,27 @@
 <script src="/static/js/easypiechart-data.js"></script>
 <script src="/static/js/moment.js"></script>
 <script src="/static/js/jquery.form-validator.min.js"></script>
-<script src="/static/js/bootstrap-table.js"></script>
-<script src="/static/js/bootstrap-table-es.js"></script>
+<script src="/static/js/jquery.dataTables.min.js"></script>
+<script src="/static/js/dataTables.bootstrap.min.js"></script>
 <script src="/static/js/app.js"></script>
 <script src="/static/js/bootstrap-select.min.js"></script>
 <script src="/static/js/jquery-ui.min.js"></script>
+<script>
+    $(document).ready(function () {
+        $('#datatable').DataTable({
+            "language": {
+                "url": '/static/js/lang/spanish.json'
+            }
+        });
+        $('#paginatortable').DataTable({
+            "searching": false,
+            "ordering": false,
+            "language": {
+                "url": '/static/js/lang/spanish.json'
+            }
+        });
+    });
+</script>
 <div th:if="${script != null}">
     <script th:src="${script}"></script>
 </div>

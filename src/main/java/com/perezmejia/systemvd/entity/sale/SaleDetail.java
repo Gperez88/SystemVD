@@ -13,7 +13,7 @@ import javax.persistence.*;
 public class SaleDetail {
     private Long id;
     private Long quantity;
-    private float total_price;
+    private float totalPrice;
     private Product product;
     private Sale sale;
 
@@ -40,12 +40,12 @@ public class SaleDetail {
 
     @Basic
     @Column(name = "total_price")
-    public float getTotal_price() {
-        return total_price;
+    public float getTotalPrice() {
+        return totalPrice;
     }
 
-    public void setTotal_price(float total_price) {
-        this.total_price = total_price;
+    public void setTotalPrice(float total_price) {
+        this.totalPrice = total_price;
     }
 
     @ManyToOne

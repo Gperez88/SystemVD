@@ -41,8 +41,7 @@
                     <span th:text="#{page.client.no-data-message}"></span> <b th:text="#{page.client.action.add}"></b>
                 </div>
                 <div class="panel-body" th:if="${not #lists.isEmpty(clients)}">
-                    <table data-toggle="table" data-locale="es-ES" data-pagination="true" data-sort-name="name"
-                           data-sort-order="desc" data-search="true">
+                    <table id="datatable" class="table table-striped table-bordered">
                         <thead>
                         <tr>
                             <th data-field="id" data-sortable="true"><span th:text="#{global.id}">ID</span></th>
@@ -65,11 +64,11 @@
                             <td th:text="${#calendars.format(client.createDate,'dd/MM/yyyy hh:mm a')}"></td>
                             <td th:text="${#calendars.format(client.modifyDate,'dd/MM/yyyy hh:mm a')}"></td>
                             <td>
-                                <a type="button" class="btn btn-xs btn-info"
+                                <a type="button" class="btn btn-sm btn-info"
                                    th:href="@{/clientes/editar(id=${client.id})}">
                                     <i class="fa fa-edit"></i>
                                 </a>
-                                <a type="button" class="btn btn-xs btn-danger">
+                                <a type="button" class="btn btn-sm btn-danger">
                                     <i class="fa fa-trash"></i>
                                 </a>
                             </td>

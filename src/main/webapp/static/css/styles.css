@@ -346,8 +346,8 @@ a.bg-danger:hover {
     font-size: 18px;
     font-weight: 300;
     letter-spacing: 0.025em;
-    height: 66px;
-    line-height: 45px;
+    height: 40px;
+    line-height: 25px;
 }
 
 .panel-default .panel-heading {
@@ -936,7 +936,7 @@ h1.page-header {
 .table > thead > tr > th {
     border-bottom: 1px solid #e6e7e8;
     vertical-align: middle;
-    height: 50px;
+    height: 40px;
 }
 
 .fixed-table-pagination .pagination {
@@ -946,6 +946,10 @@ h1.page-header {
 
 .fixed-table-pagination .pagination-detail {
     margin-top: 20px;
+}
+
+.table .btn{
+    vertical-align: text-top;
 }
 
 /*Icons*/
@@ -1081,12 +1085,12 @@ h1.page-header {
     background-color: white !important;
 }
 
-.main-show{
+.main-show {
     margin-left: 16.66666667%;
     width: 83.33333333%;
 }
 
-.main-hide{
+.main-hide {
     margin-left: 0;
     width: 100%;
 }

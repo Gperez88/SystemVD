@@ -14,6 +14,7 @@ public class Person {
     private String firstname;
     private String lastname;
     private Date birthdate;
+    private String identifyDocument;
     private String sex;
     private String email;
 
@@ -59,6 +60,16 @@ public class Person {
     }
 
     @Basic
+    @Column(name = "identity_document")
+    public String getIdentifyDocument() {
+        return identifyDocument;
+    }
+
+    public void setIdentifyDocument(String identifyDocument) {
+        this.identifyDocument = identifyDocument;
+    }
+
+    @Basic
     @Column(name = "sex")
     public String getSex() {
         return sex;
@@ -89,6 +100,7 @@ public class Person {
         if (firstname != null ? !firstname.equals(that.firstname) : that.firstname != null) return false;
         if (lastname != null ? !lastname.equals(that.lastname) : that.lastname != null) return false;
         if (birthdate != null ? !birthdate.equals(that.birthdate) : that.birthdate != null) return false;
+        if (identifyDocument != null ? !identifyDocument.equals(that.identifyDocument) : that.identifyDocument != null) return false;
         if (sex != null ? !sex.equals(that.sex) : that.sex != null) return false;
         if (email != null ? !email.equals(that.email) : that.email != null) return false;
 
@@ -101,6 +113,7 @@ public class Person {
         result = 31 * result + (firstname != null ? firstname.hashCode() : 0);
         result = 31 * result + (lastname != null ? lastname.hashCode() : 0);
         result = 31 * result + (birthdate != null ? birthdate.hashCode() : 0);
+        result = 31 * result + (identifyDocument != null ? identifyDocument.hashCode() : 0);
         result = 31 * result + (sex != null ? sex.hashCode() : 0);
         result = 31 * result + (email != null ? email.hashCode() : 0);
         return result;

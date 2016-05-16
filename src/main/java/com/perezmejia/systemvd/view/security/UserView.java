@@ -35,6 +35,13 @@ public class UserView extends ParsableObject<User, UserView> {
     @Mapping(otherType = true)
     private PersonView person;
 
+    public UserView() {
+    }
+
+    public UserView(User user) {
+        load(user);
+    }
+
     public Long getId() {
         return id;
     }
@@ -120,6 +127,8 @@ public class UserView extends ParsableObject<User, UserView> {
             List<AuthorityView> authorityViews = new ArrayList<>();
             user.getAuthorities()
                     .forEach(authorities -> authorityViews.add(new AuthorityView(authorities.getAuthority())));
+
+            userView.setAuthorities(authorityViews);
         }
 
         return userView;

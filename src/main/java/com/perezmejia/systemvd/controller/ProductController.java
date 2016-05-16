@@ -2,19 +2,18 @@ package com.perezmejia.systemvd.controller;
 
 import com.perezmejia.systemvd.config.template.Layout;
 import com.perezmejia.systemvd.config.template.Script;
+import com.perezmejia.systemvd.entity.inventory.Product;
 import com.perezmejia.systemvd.service.inventory.CategoryService;
 import com.perezmejia.systemvd.service.inventory.ProductService;
 import com.perezmejia.systemvd.view.inventory.CategoryView;
 import com.perezmejia.systemvd.view.inventory.ProductView;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
+import org.springframework.expression.spel.ast.FloatLiteral;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.util.List;
@@ -30,6 +29,7 @@ public class ProductController {
     private final String REL_PATH = "/inventario/productos";
     private final String ADD_PATH = REL_PATH + "/agregar";
     private final String EDIT_PATH = REL_PATH + "/editar";
+    private final String SEARCH_PRICE_PATH = REL_PATH + "/obtenerPrecio";
 
     private final String REL_VIEW_PATH = "secured/inventory/products";
     private final String QUERY_VIEW_PATH = REL_VIEW_PATH + "/query";
@@ -92,6 +92,14 @@ public class ProductController {
         productService.save(product);
 
         return "redirect:" + REL_PATH;
+    }
+
+    @RequestMapping(value = SEARCH_PRICE_PATH, method = RequestMethod.GET)
+    public
+    @ResponseBody
+    float getPriceProduct(@RequestParam("productId") Long productId) {
+        ProductView product = productService.findById(productId);
+        return product.getPrice();
     }
 
 }

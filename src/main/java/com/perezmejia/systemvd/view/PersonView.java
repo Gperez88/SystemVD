@@ -32,6 +32,9 @@ public class PersonView extends ParsableObject<Person, PersonView> {
     @Past(message ="person.birthdate.past.error")
     private Date birthdate;
     @Mapping
+    @NotBlank(message = "person.identify.notnull.error")
+    private String identifyDocument;
+    @Mapping
     @NotBlank(message = "person.sex.notnull.error")
     private String sex;
     @Mapping
@@ -69,6 +72,14 @@ public class PersonView extends ParsableObject<Person, PersonView> {
 
     public void setBirthdate(Date birthdate) {
         this.birthdate = birthdate;
+    }
+
+    public String getIdentifyDocument() {
+        return identifyDocument;
+    }
+
+    public void setIdentifyDocument(String identifyDocument) {
+        this.identifyDocument = identifyDocument;
     }
 
     public String getSex() {

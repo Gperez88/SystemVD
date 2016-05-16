@@ -10,7 +10,6 @@ import com.perezmejia.systemvd.view.SexView;
 import com.perezmejia.systemvd.view.StatusView;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -18,7 +17,6 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.sql.Timestamp;
-import java.time.LocalDate;
 import java.util.*;
 
 /**
@@ -31,7 +29,7 @@ public class ClientController {
     private final String REL_PATH = "/clientes";
     private final String ADD_PATH = REL_PATH + "/agregar";
     private final String EDIT_PATH = REL_PATH + "/editar";
-    private final String SEARCH_PATH = REL_PATH + "/clientnames";
+    private final String SEARCH_CLIENT_NAME_PATH = REL_PATH + "/otenerNombreClientes";
 
     private final String REL_VIEW_PATH = "secured/clients";
     private final String QUERY_VIEW_PATH = REL_VIEW_PATH + "/query";
@@ -99,7 +97,7 @@ public class ClientController {
         return "redirect:" + REL_PATH;
     }
 
-    @RequestMapping(value = SEARCH_PATH, method = RequestMethod.GET)
+    @RequestMapping(value = SEARCH_CLIENT_NAME_PATH, method = RequestMethod.GET)
     public
     @ResponseBody
     List<AutoCompleteData> getClientName(@RequestParam("value") String value) {

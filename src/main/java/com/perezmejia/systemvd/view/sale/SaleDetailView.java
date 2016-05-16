@@ -17,13 +17,14 @@ public class SaleDetailView extends ParsableObject<SaleDetail, SaleDetailView> {
     @Mapping
     private Long quantity;
     @Mapping
-    private float total_price;
+    private float totalPrice;
     @Mapping(otherType = true)
     private ProductView product;
     @Mapping(otherType = true)
     private SaleView sale;
 
     public SaleDetailView() {
+        this.product = new ProductView();
     }
 
     public SaleDetailView(SaleDetail saleDetail) {
@@ -46,12 +47,12 @@ public class SaleDetailView extends ParsableObject<SaleDetail, SaleDetailView> {
         this.quantity = quantity;
     }
 
-    public float getTotal_price() {
-        return total_price;
+    public float getTotalPrice() {
+        return totalPrice;
     }
 
-    public void setTotal_price(float total_price) {
-        this.total_price = total_price;
+    public void setTotalPrice(float totalPrice) {
+        this.totalPrice = totalPrice;
     }
 
     public ProductView getProduct() {

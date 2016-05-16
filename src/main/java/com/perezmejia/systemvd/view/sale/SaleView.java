@@ -33,6 +33,7 @@ public class SaleView extends ParsableObject<Sale, SaleView> {
     private List<SaleDetailView> details;
 
     public SaleView() {
+        this.details = new ArrayList<>();
     }
 
     public SaleView(Sale sale) {

@@ -1,6 +1,6 @@
 package com.perezmejia.systemvd.config;
 
-import com.perezmejia.systemvd.service.security.CustomUserDetailsService;
+import com.perezmejia.systemvd.service.security.impl.UserServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
@@ -17,7 +17,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 
 @Configuration
 @EnableGlobalMethodSecurity
-@ComponentScan(basePackageClasses = CustomUserDetailsService.class)
+@ComponentScan(basePackageClasses = UserServiceImpl.class)
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Autowired

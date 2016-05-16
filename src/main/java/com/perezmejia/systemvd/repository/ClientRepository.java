@@ -12,4 +12,7 @@ import java.util.List;
 public interface ClientRepository extends CrudRepository<Client, Long> {
     @Query("select concat(c.person.firstname,' ', c.person.lastname) from Client c where c.person.firstname like ?1")
     public List<String> findAllClientName(String value);
+
+    @Query("select c from Client c where concat(c.person.firstname,' ', c.person.lastname) like ?1")
+    public Client findClientByName(String name);
 }

@@ -9,4 +9,6 @@ import java.util.List;
  */
 public interface ClientService extends BaseService<ClientView> {
     public List<String> findAllClientName(String value);
+
+    public ClientView findClientByName(String name);
 }
