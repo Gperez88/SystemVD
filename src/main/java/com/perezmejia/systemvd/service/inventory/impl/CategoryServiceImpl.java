@@ -37,4 +37,9 @@ public class CategoryServiceImpl implements CategoryService {
         Category category = categoryView.parse();
         categoryRepository.save(category);
     }
+
+    @Override
+    public void delete(Long id) {
+
+    }
 }

@@ -36,4 +36,9 @@ public class SaleDetailServiceImpl implements SaleDetailService {
 
         saleDetailRepository.save(saleDetail);
     }
+
+    @Override
+    public void delete(Long id) {
+
+    }
 }

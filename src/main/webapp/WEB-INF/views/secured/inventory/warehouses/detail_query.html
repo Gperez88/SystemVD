@@ -66,11 +66,11 @@
                                 <td th:text="${warehouseDetail.product.name}"></td>
                                 <td th:text="${warehouseDetail.stock}"></td>
                                 <td>
-                                    <a type="button" class="btn btn-xs btn btn-primary"
+                                    <a type="button" class="btn btn-sm btn btn-primary"
                                        th:href="@{/inventario/almacenes/detalle/editar(id=${warehouseDetail.id})}">
                                         <i class="fa fa-edit"></i>
                                     </a>
-                                    <a type="button" class="btn btn-xs btn-danger">
+                                    <a type="button" class="btn btn-sm btn-danger">
                                         <i class="fa fa-trash"></i>
                                     </a>
                                 </td>
@@ -82,6 +82,7 @@
             </div>
         </div>
     </div><!--/.row-->
+
     <div class="modal fade" id="addProductModal" tabindex="-1" role="dialog"
          aria-labelledby="addProductModalLabel" th:fragment="modal">
         <div class="modal-dialog" role="document">
@@ -101,11 +102,10 @@
                             <label>
                                 <span th:text="#{global.product}">Producto</span>
                             </label>
-                            <select th:field="*{product.id}"
-                                                                         class="selectpicker form-control" data-live-search="true">
+                            <select th:field="*{product.id}" class="selectpicker form-control" data-live-search="true">
                             <option th:each="product : ${allProducts}"
                                     th:value="${product.id}"
-                                    th:text="${product.name}">Seleccione un Producto
+                                    th:text="${product.name}">
                             </option>
                         </select>
                         </div>
@@ -130,6 +130,7 @@
             </div>
         </div>
     </div><!--/.modal -->
+
 </div><!--/.main-->
 </body>
 </html>

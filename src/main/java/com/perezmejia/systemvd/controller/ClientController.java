@@ -29,6 +29,7 @@ public class ClientController {
     private final String REL_PATH = "/clientes";
     private final String ADD_PATH = REL_PATH + "/agregar";
     private final String EDIT_PATH = REL_PATH + "/editar";
+    private final String DELETE_PATH = REL_PATH + "/eliminar";
     private final String SEARCH_CLIENT_NAME_PATH = REL_PATH + "/otenerNombreClientes";
 
     private final String REL_VIEW_PATH = "secured/clients";
@@ -86,8 +87,8 @@ public class ClientController {
     }
 
     @Script("/static/js/views/clients/query.js")
-    @RequestMapping(value = {ADD_PATH, EDIT_PATH}, method = RequestMethod.POST)
-    public String save(@ModelAttribute("client") @Valid ClientView client, BindingResult bindingResult) {
+    @RequestMapping(value = DELETE_PATH, method = RequestMethod.POST)
+    public String save(@ModelAttribute("clientId") @Valid ClientView client, BindingResult bindingResult) {
 
         if (bindingResult.hasErrors()) {
             return FORM_VIEW_PATH;
@@ -97,11 +98,23 @@ public class ClientController {
         return "redirect:" + REL_PATH;
     }
 
+    @Script("/static/js/views/clients/query.js")
+    @RequestMapping(value = {ADD_PATH, EDIT_PATH}, method = RequestMethod.POST)
+    public String delete(@RequestParam Long clientId, BindingResult bindingResult) {
+
+        if (bindingResult.hasErrors()) {
+            return QUERY_VIEW_PATH;
+        }
+        clientService.delete(clientId);
+
+        return "redirect:" + REL_PATH;
+    }
+
     @RequestMapping(value = SEARCH_CLIENT_NAME_PATH, method = RequestMethod.GET)
     public
     @ResponseBody
     List<AutoCompleteData> getClientName(@RequestParam("value") String value) {
-        List<String> clientNames = clientService.findAllClientName("%"+value+"%");
+        List<String> clientNames = clientService.findAllClientName("%" + value + "%");
         List<AutoCompleteData> autoCompleteData = new ArrayList<>();
         clientNames.forEach(client -> autoCompleteData.add(new AutoCompleteData(client, client)));
 

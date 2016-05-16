@@ -36,4 +36,9 @@ public class WarehouseDetailServiceImpl implements WarehouseDetailService {
 
         warehouseDetailRepository.save(warehouseDetail);
     }
+
+    @Override
+    public void delete(Long id) {
+
+    }
 }

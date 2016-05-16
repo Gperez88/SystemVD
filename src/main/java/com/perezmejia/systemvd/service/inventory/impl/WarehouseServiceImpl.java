@@ -35,4 +35,9 @@ public class WarehouseServiceImpl implements WarehouseService {
         Warehouse warehouse = warehouseView.parse();
         warehouseRepository.save(warehouse);
     }
+
+    @Override
+    public void delete(Long id) {
+
+    }
 }

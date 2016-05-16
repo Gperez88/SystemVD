@@ -39,6 +39,11 @@ public class ClientServiceImpl implements ClientService {
     }
 
     @Override
+    public void delete(Long clientId) {
+        clientRepository.delete(clientId);
+    }
+
+    @Override
     public List<String> findAllClientName(String value) {
         return clientRepository.findAllClientName(value);
     }

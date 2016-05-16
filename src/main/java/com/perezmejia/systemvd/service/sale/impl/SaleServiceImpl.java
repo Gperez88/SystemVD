@@ -35,4 +35,9 @@ public class SaleServiceImpl implements SaleService {
         Sale sale = saleView.parse();
         saleRepository.save(sale);
     }
+
+    @Override
+    public void delete(Long id) {
+
+    }
 }

@@ -46,8 +46,13 @@
     </div><!--/.row-->
 
     <form role="form" action="#" th:action="@{/venta/vender}" th:object="${sale}" method="post">
+
         <div class="row">
             <div class="col-lg-12">
+                <input type="hidden" th:field="*{id}"/>
+                <input type="hidden" th:field="*{client.id}"/>
+                <input type="hidden" th:field="*{user.id}"/>
+
                 <div class="panel panel-default">
                     <div class="panel-heading">
                         <span th:text="#{page.client.add.data-client}">Datos Cliente</span>
@@ -84,11 +89,11 @@
                                     </div>
                                     <div class="form-group">
                                         <label>
-                                            <span th:text="#{global.identify}">Cedula</span>
+                                            <span th:text="#{global.identify}">Cédula</span>
                                         </label>
                                         <input class="form-control" type="text"
                                                th:field="*{client.person.identifyDocument}"
-                                               placeholder="Nombre del Cliente" readonly="readonly"/>
+                                               placeholder="Cédula del Cliente" readonly="readonly"/>
                                     </div>
                                 </div>
                             </div>
@@ -106,10 +111,37 @@
                     </div>
                     <div class="panel-body">
                         <div class="col-lg-12">
-                            <div class="row margin-bottom7">
-                                <div class="col-lg-12">
-                                    <button type="submit" class="btn btn-primary pull-right" name="addDetail"
-                                            th:disabled="${!enable}">
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label>
+                                            <span th:text="#{global.product}">Producto</span>
+                                        </label>
+                                        <select id="productId" th:disabled="${!enable}"
+                                                name="productId" class="selectpicker form-control"
+                                                data-live-search="true">
+                                            <option value="">Seleccione un producto</option>
+                                            <option th:each="product : ${allProducts}"
+                                                    th:value="${product.id}"
+                                                    th:text="${product.name}">
+                                            </option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label>
+                                            <span th:text="#{global.quantity}">Cantidad</span>
+                                        </label>
+                                        <input class="form-control" name="quantity" type="number"
+                                               th:disabled="${!enable}"
+                                               placeholder="0"/>
+
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <button type="submit" class="btn btn-primary" name="addDetail"
+                                            th:disabled="${!enable}" style="margin-top: 24px">
                                         <span th:text="#{page.sale.sell.detail.add}">Agregar Detalle</span>
                                     </button>
                                 </div>
@@ -117,19 +149,28 @@
                             <table id="paginatortable" class="table table-striped table-bordered">
                                 <thead>
                                 <tr>
-                                    <th data-field="product" data-sortable="true"><span th:text="#{global.product}">Producto</span></th>
-                                    <th data-field="unit-price" data-sortable="true"><span th:text="#{global.unit-price}">Precio Unidad</span></th>
-                                    <th data-field="quantity" data-sortable="true"><span th:text="#{global.quantity}">Cantidad</span></th>
-                                    <th data-field="total-price" data-sortable="true"><span th:text="#{global.total-price}">Precio Total</span></th>
+                                    <th><span th:text="#{global.product}">Producto</span></th>
+                                    <th><span th:text="#{global.unit-price}">Precio Unidad</span></th>
+                                    <th><span th:text="#{global.quantity}">Cantidad</span></th>
+                                    <th><span th:text="#{global.total-price}">Precio Total</span></th>
                                     <th><span th:text="#{global.action}">Acción</span></th>
                                 </tr>
                                 </thead>
                                 <tbody>
                                 <tr th:each="detail,detailStart : *{details}">
                                     <input type="hidden" th:field="*{details[__${detailStart.index}__].id}"/>
+                                    <input type="hidden" th:field="*{details[__${detailStart.index}__].quantity}"/>
+                                    <input type="hidden"
+                                           th:field="*{details[__${detailStart.index}__].totalPrice}"/>
+                                    <input type="hidden" th:field="*{details[__${detailStart.index}__].sale.id}"/>
+                                    <input type="hidden"
+                                           th:field="*{details[__${detailStart.index}__].product.id}"/>
+                                    <input type="hidden"
+                                           th:field="*{details[__${detailStart.index}__].product.price}"/>
                                     <td>
-                                        <select id="productSelect" th:field="*{details[__${detailStart.index}__].product.id}"
-                                                class="selectpicker form-control" data-live-search="true">
+                                        <select th:field="*{details[__${detailStart.index}__].product.id}"
+                                                class="selectpicker form-control" disabled="true"
+                                                data-live-search="true">
                                             <option value="">Seleccione un producto</option>
                                             <option th:each="product : ${allProducts}"
                                                     th:value="${product.id}"
@@ -138,14 +179,15 @@
                                         </select>
                                     </td>
                                     <td>
-                                        <input id="unitPrice" type="number" class="form-control" disabled="true"
+                                        <input class="form-control" disabled="true"
                                                th:field="*{details[__${detailStart.index}__].product.price}"/>
                                     </td>
                                     <td>
-                                        <input id="quantity" type="number" class="form-control" th:field="*{details[__${detailStart.index}__].quantity}"/>
+                                        <input type="number" class="form-control" disabled="true"
+                                               th:field="*{details[__${detailStart.index}__].quantity}"/>
                                     </td>
                                     <td>
-                                        <input id="totalPrice" type="number" class="form-control"  disabled="true"
+                                        <input type="number" class="form-control" disabled="true"
                                                th:field="*{details[__${detailStart.index}__].totalPrice}"/>
                                     </td>
                                     <td>
@@ -162,6 +204,29 @@
                 </div>
             </div>
         </div><!--/.row-->
+
+        <div class="row">
+            <div class="col-md-6 pull-right">
+                <div class="panel panel-default">
+                    <div class="panel-body">
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-6 pull-right margin-bottom30">
+                <div class="pull-right">
+                    <button type="submit" class="btn btn-primary">
+                        <span th:text="#{global.save}">Guardar</span>
+                    </button>
+                    <a type="button" href="/venta/consultar" class="btn btn-default">
+                        <span th:text="#{global.cancel}">Cancelar</span>
+                    </a>
+                </div>
+            </div>
+        </div>
 
     </form><!--/.form-->
 

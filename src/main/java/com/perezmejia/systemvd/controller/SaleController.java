@@ -84,12 +84,24 @@ public class SaleController {
     @Script("/static/js/views/sale/sell.js")
     @Layout("table")
     @RequestMapping(value = SELL_PATH, params = "addDetail", method = RequestMethod.POST)
-    public String addDetail(Model model, final SaleView sale, final BindingResult result) {
+    public String addDetail(Model model, @RequestParam Long productId, @RequestParam Long quantity,
+                            final SaleView sale, final BindingResult result) {
+
         boolean enable = false;
+
         if (!result.hasErrors()) {
             enable = true;
             SaleDetailView saleDetail = new SaleDetailView();
+            ProductView product = productService.findById(productId);
+
+            float unitPrice = product.getPrice();
+            float totalPrice = unitPrice * quantity;
+
+            saleDetail.setProduct(product);
+            saleDetail.setQuantity(quantity);
+            saleDetail.setTotalPrice(totalPrice);
             saleDetail.setSale(sale);
+
             sale.getDetails().add(saleDetail);
         }
 

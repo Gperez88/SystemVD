@@ -36,7 +36,7 @@
     <div class="row">
         <div class="col-lg-12">
             <div class="panel panel-default">
-                <div class="alert bg-info" role="alert"  th:if="${#lists.isEmpty(clients)}">
+                <div class="alert bg-info" role="alert" th:if="${#lists.isEmpty(clients)}">
                     <i class="fa fa-info-circle fa-lg" aria-hidden="true"></i>
                     <span th:text="#{page.client.no-data-message}"></span> <b th:text="#{page.client.action.add}"></b>
                 </div>
@@ -45,12 +45,17 @@
                         <thead>
                         <tr>
                             <th data-field="id" data-sortable="true"><span th:text="#{global.id}">ID</span></th>
-                            <th data-field="first-name" data-sortable="true"><span th:text="#{global.firstname}">Nombre</span></th>
-                            <th data-field="last-name" data-sortable="true"><span th:text="#{global.lastname}">Apellido</span></th>
+                            <th data-field="first-name" data-sortable="true"><span
+                                    th:text="#{global.firstname}">Nombre</span></th>
+                            <th data-field="last-name" data-sortable="true"><span
+                                    th:text="#{global.lastname}">Apellido</span></th>
                             <th data-field="sex" data-sortable="true"><span th:text="#{global.sex}">Sexo</span></th>
-                            <th data-field="email" data-sortable="true"><span th:text="#{global.email}">Email</span></th>
-                            <th data-field="create-date" data-sortable="true"><span th:text="#{global.create-date}">Creado En</span></th>
-                            <th data-field="modify-date" data-sortable="true"><span th:text="#{global.modify-date}">Modificado En</span></th>
+                            <th data-field="email" data-sortable="true"><span th:text="#{global.email}">Email</span>
+                            </th>
+                            <th data-field="create-date" data-sortable="true"><span th:text="#{global.create-date}">Creado En</span>
+                            </th>
+                            <th data-field="modify-date" data-sortable="true"><span th:text="#{global.modify-date}">Modificado En</span>
+                            </th>
                             <th><span th:text="#{global.action}">Acción</span></th>
                         </tr>
                         </thead>
@@ -68,7 +73,8 @@
                                    th:href="@{/clientes/editar(id=${client.id})}">
                                     <i class="fa fa-edit"></i>
                                 </a>
-                                <a type="button" class="btn btn-sm btn-danger">
+                                <a type="button" class="btn btn-sm btn-danger" data-toggle="modal"
+                                   data-target="#removeClientModal" th:attr="data-whatever=${client.id}">
                                     <i class="fa fa-trash"></i>
                                 </a>
                             </td>
@@ -79,6 +85,30 @@
             </div>
         </div>
     </div><!--/.row-->
+
+    <div class="modal fade" id="removeClientModal" tabindex="-1" role="dialog"
+         aria-labelledby="removeClientModalLabel" th:fragment="modal">
+        <div class="modal-dialog" role="document">
+            <form role="form" th:action="@{/clientes/eliminar}" method="post">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                                aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title" id="removeClientModalLabel"><span
+                                th:text="#{page.client.query.delete.title}">Eliminar Cliente</span></h4>
+                    </div>
+                    <div class="modal-body">
+                        <span th:text="#{page.client.query.delete.message}">Esta seguro que desea eliminar el cliente</span>
+                        <input name="clientId" type="hidden"/>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+                        <button type="submit" class="btn btn-primary">Aceptar</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div><!--/.modal -->
 
 </div><!--/.main-->
 

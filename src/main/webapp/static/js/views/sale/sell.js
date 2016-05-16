@@ -13,26 +13,26 @@ $(document).ready(function () {
         }
     });
 
-    $('#productSelect').change(function () {
-        $.get('/inventario/productos/obtenerPrecio',
-            {productId: $(this).val()})
-            .done(function (data) {
-                    $('#unitPrice').val(data);
-                    calculateTotalPrice();
-                }
-            )
-    });
-
-    $('#quantity').change(function () {
-        calculateTotalPrice();
-    });
-
-    function calculateTotalPrice() {
-        var quantity = $('#quantity').val();
-        var unitPrice = $('#unitPrice').val();
-
-        var totalPrice = unitPrice * quantity;
-
-        $('#totalPrice').val(totalPrice);
-    }
+    //$('#productSelect').change(function () {
+    //    $.get('/inventario/productos/obtenerPrecio',
+    //        {productId: $(this).val()})
+    //        .done(function (data) {
+    //                $('#unitPrice').val(data);
+    //                calculateTotalPrice();
+    //            }
+    //        )
+    //});
+    //
+    //$('#quantity').change(function () {
+    //    calculateTotalPrice();
+    //});
+    //
+    //function calculateTotalPrice() {
+    //    var quantity = $('#quantity').val();
+    //    var unitPrice = $('#unitPrice').val();
+    //
+    //    var totalPrice = unitPrice * quantity;
+    //
+    //    $('#totalPrice').val(totalPrice);
+    //}
 });
