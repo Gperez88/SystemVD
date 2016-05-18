@@ -74,7 +74,8 @@
                                     <i class="fa fa-edit"></i>
                                 </a>
                                 <a type="button" class="btn btn-sm btn-danger" data-toggle="modal"
-                                   data-target="#removeClientModal" th:attr="data-whatever=${client.id}">
+                                   data-target="#deleteConfirmationModal" th:attr="data-object_id=${client.id}"
+                                    data-title_modal="Eliminar Cliente" data-message_modal="Esta seguro que desea eliminar el cliente.">
                                     <i class="fa fa-trash"></i>
                                 </a>
                             </td>
@@ -86,29 +87,7 @@
         </div>
     </div><!--/.row-->
 
-    <div class="modal fade" id="removeClientModal" tabindex="-1" role="dialog"
-         aria-labelledby="removeClientModalLabel" th:fragment="modal">
-        <div class="modal-dialog" role="document">
-            <form role="form" th:action="@{/clientes/eliminar}" method="post">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
-                                aria-hidden="true">&times;</span></button>
-                        <h4 class="modal-title" id="removeClientModalLabel"><span
-                                th:text="#{page.client.query.delete.title}">Eliminar Cliente</span></h4>
-                    </div>
-                    <div class="modal-body">
-                        <h4><span th:text="#{page.client.query.delete.message}">Esta seguro que desea eliminar el cliente</span></h4>
-                        <input name="clientId" type="hidden"/>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
-                        <button type="submit" class="btn btn-primary">Aceptar</button>
-                    </div>
-                </div>
-            </form>
-        </div>
-    </div><!--/.modal -->
+    <div th:replace="templates/fragments/delete_confirmation_modal :: delete_confirmation_modal"/>
 
 </div><!--/.main-->
 

@@ -71,7 +71,9 @@
                                    th:href="@{/inventario/almacenes/editar(id=${warehouse.id})}">
                                     <i class="fa fa-edit"></i>
                                 </a>
-                                <a type="button" class="btn btn-sm btn-danger">
+                                <a type="button" class="btn btn-sm btn-danger" data-toggle="modal"
+                                   data-target="#deleteConfirmationModal" th:attr="data-object_id=${warehouse.id}"
+                                   data-title_modal="Eliminar Almacén" data-message_modal="Esta seguro que desea eliminar el almacén.">
                                     <i class="fa fa-trash"></i>
                                 </a>
                             </td>
@@ -82,6 +84,8 @@
             </div>
         </div>
     </div><!--/.row-->
+
+    <div th:replace="templates/fragments/delete_confirmation_modal :: delete_confirmation_modal"/>
 
 </div><!--/.main-->
 </body>

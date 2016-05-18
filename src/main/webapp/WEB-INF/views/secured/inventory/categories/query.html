@@ -64,7 +64,9 @@
                                    th:href="@{/inventario/categorias/editar(id=${category.id})}">
                                     <i class="fa fa-edit"></i>
                                 </a>
-                                <a type="button" class="btn btn-sm btn-danger">
+                                <a type="button" class="btn btn-sm btn-danger" data-toggle="modal"
+                                   data-target="#deleteConfirmationModal" th:attr="data-object_id=${category.id}"
+                                   data-title_modal="Eliminar Categoría" data-message_modal="Esta seguro que desea eliminar la categoría.">
                                     <i class="fa fa-trash"></i>
                                 </a>
                             </td>
@@ -75,6 +77,8 @@
             </div>
         </div>
     </div><!--/.row-->
+
+    <div th:replace="templates/fragments/delete_confirmation_modal :: delete_confirmation_modal"/>
 
 </div><!--/.main-->
 </body>
