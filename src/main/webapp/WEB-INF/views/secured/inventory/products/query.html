@@ -73,8 +73,7 @@
                                     <i class="fa fa-edit"></i>
                                 </a>
                                 <a type="button" class="btn btn-sm btn-danger" data-toggle="modal"
-                                   data-target="#deleteConfirmationModal" th:attr="data-object_id=${product.id}"
-                                   data-title_modal="Eliminar Producto" data-message_modal="Esta seguro que desea eliminar el producto.">
+                                   data-target="#deleteConfirmationModal" th:attr="data-object_id=${product.id}">
                                     <i class="fa fa-trash"></i>
                                 </a>
                             </td>
@@ -86,7 +85,11 @@
         </div>
     </div><!--/.row-->
 
-    <div th:replace="templates/fragments/delete_confirmation_modal :: delete_confirmation_modal"/>
+    <div th:replace="templates/fragments/delete_confirmation_modal :: delete_confirmation_modal(
+        urlAction = '/inventario/productos/eliminar',
+        titleModal = 'Eliminar Producto',
+        messageModal = 'Esta seguro que desea eliminar el producto.'
+    )"/>
 
 </div><!--/.main-->
 

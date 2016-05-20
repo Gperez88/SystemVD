@@ -39,6 +39,6 @@ public class WarehouseDetailServiceImpl implements WarehouseDetailService {
 
     @Override
     public void delete(Long id) {
-
+        warehouseDetailRepository.delete(id);
     }
 }

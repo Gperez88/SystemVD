@@ -100,9 +100,10 @@ public class ClientController {
 
     @Script("/static/js/views/clients/query.js")
     @RequestMapping(value = DELETE_PATH, method = RequestMethod.POST)
-    public String delete(@RequestParam("clientId") Long clientId) {
+    public String delete(@RequestParam("objectId") Long clientId) {
 
         clientService.delete(clientId);
+
 
         return "redirect:" + REL_PATH;
     }

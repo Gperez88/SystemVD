@@ -39,11 +39,7 @@ $(function () {
 $('#deleteConfirmationModal').on('show.bs.modal', function (event) {
     var button = $(event.relatedTarget)
 
-    var titleModel = button.data('title_modal')
-    var messageModal = button.data('message_modal')
     var objectId = button.data('object_id')
 
-    $(this).find('#titleModal').text(titleModel)
-    $(this).find('#messageModal').text(messageModal)
     $(this).find('.modal-body input').val(objectId)
 })

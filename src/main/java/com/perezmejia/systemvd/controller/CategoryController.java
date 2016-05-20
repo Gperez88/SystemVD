@@ -27,6 +27,7 @@ public class CategoryController {
     private final String REL_PATH = "/inventario/categorias";
     private final String ADD_PATH = REL_PATH + "/agregar";
     private final String EDIT_PATH = REL_PATH + "/editar";
+    private final String DELETE_PATH = REL_PATH + "/eliminar";
 
     private final String REL_VIEW_PATH = "secured/inventory/categories";
     private final String QUERY_VIEW_PATH = REL_VIEW_PATH + "/query";
@@ -76,6 +77,15 @@ public class CategoryController {
             return FORM_VIEW_PATH;
         }
         categoryService.save(categoryView);
+
+        return "redirect:" + REL_PATH;
+    }
+
+    @Script("/static/js/views/categories/query.js")
+    @RequestMapping(value = DELETE_PATH, method = RequestMethod.POST)
+    public String delete(@RequestParam("objectId") Long categoryId) {
+
+        categoryService.delete(categoryId);
 
         return "redirect:" + REL_PATH;
     }

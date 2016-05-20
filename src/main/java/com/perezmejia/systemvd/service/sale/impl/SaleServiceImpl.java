@@ -38,6 +38,6 @@ public class SaleServiceImpl implements SaleService {
 
     @Override
     public void delete(Long id) {
-
+        saleRepository.delete(id);
     }
 }

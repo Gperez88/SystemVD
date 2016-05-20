@@ -31,6 +31,7 @@ public class WarehouseController {
     private final String REL_PATH = "/inventario/almacenes";
     private final String ADD_PATH = REL_PATH + "/agregar";
     private final String EDIT_PATH = REL_PATH + "/editar";
+    private final String DELETE_PATH = REL_PATH + "/eliminar";
 
     private final String REL_VIEW_PATH = "secured/inventory/warehouses";
     private final String QUERY_VIEW_PATH = REL_VIEW_PATH + "/query";
@@ -82,6 +83,15 @@ public class WarehouseController {
         }
 
         warehouseService.save(warehouse);
+
+        return "redirect:" + REL_PATH;
+    }
+
+    @Script("/static/js/views/warehouses/query.js")
+    @RequestMapping(value = DELETE_PATH, method = RequestMethod.POST)
+    public String delete(@RequestParam("objectId") Long warehouseId) {
+
+        warehouseService.delete(warehouseId);
 
         return "redirect:" + REL_PATH;
     }

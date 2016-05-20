@@ -29,6 +29,7 @@ public class ProductController {
     private final String REL_PATH = "/inventario/productos";
     private final String ADD_PATH = REL_PATH + "/agregar";
     private final String EDIT_PATH = REL_PATH + "/editar";
+    private final String DELETE_PATH = REL_PATH + "/eliminar";
     private final String SEARCH_PRICE_PATH = REL_PATH + "/obtenerPrecio";
 
     private final String REL_VIEW_PATH = "secured/inventory/products";
@@ -90,6 +91,15 @@ public class ProductController {
             return FORM_VIEW_PATH;
         }
         productService.save(product);
+
+        return "redirect:" + REL_PATH;
+    }
+
+    @Script("/static/js/views/products/query.js")
+    @RequestMapping(value = DELETE_PATH, method = RequestMethod.POST)
+    public String delete(@RequestParam("objectId") Long productId) {
+
+        productService.delete(productId);
 
         return "redirect:" + REL_PATH;
     }

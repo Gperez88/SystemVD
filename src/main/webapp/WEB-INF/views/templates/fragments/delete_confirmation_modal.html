@@ -8,21 +8,21 @@
 <div class="modal fade" id="deleteConfirmationModal" tabindex="-1" role="dialog"
      aria-labelledby="deleteConfirmationModalLabel" th:fragment="delete_confirmation_modal">
     <div class="modal-dialog modal-sm" role="document">
-        <form role="form" th:action="@{/clientes/eliminar}" method="post">
+        <form role="form" th:action="${urlAction}" method="post">
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
                             aria-hidden="true">&times;</span></button>
                     <h4 class="modal-title" id="deleteConfirmationModalLabel">
                         <i class="fa fa-trash"></i>
-                        <span id="titleModal"></span>
+                        <span th:text="${titleModal}"></span>
                     </h4>
                 </div>
                 <div class="modal-body text-center p-lg">
                     <p>
-                        <span id="messageModal"></span>
+                        <span th:text="${messageModal}"></span>
                     </p>
-                    <input name="clientId" type="hidden"/>
+                    <input name="objectId" type="hidden"/>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>

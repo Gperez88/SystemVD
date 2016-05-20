@@ -36,9 +36,10 @@
     <div class="row">
         <div class="col-lg-12">
             <div class="panel panel-default">
-                <div class="alert bg-info" role="alert"  th:if="${#lists.isEmpty(warehouses)}">
+                <div class="alert bg-info" role="alert" th:if="${#lists.isEmpty(warehouses)}">
                     <i class="fa fa-info-circle fa-lg" aria-hidden="true"></i>
-                    <span th:text="#{page.warehouse.no-data-message}"></span> <b th:text="#{page.warehouse.action.add}"></b>
+                    <span th:text="#{page.warehouse.no-data-message}"></span> <b
+                        th:text="#{page.warehouse.action.add}"></b>
                 </div>
                 <div class="panel-body" th:if="${not #lists.isEmpty(warehouses)}">
                     <table id="datatable" class="table table-striped table-bordered">
@@ -47,9 +48,12 @@
                             <th></th>
                             <th data-field="id" data-sortable="true"><span th:text="#{global.id}">ID</span></th>
                             <th data-field="name" data-sortable="true"><span th:text="#{global.name}">Nombre</span></th>
-                            <th data-field="description" data-sortable="true"><span th:text="#{global.description}">Descripción</span></th>
-                            <th data-field="create-date" data-sortable="true"><span th:text="#{global.create-date}">Creado En</span></th>
-                            <th data-field="modify-date" data-sortable="true"><span th:text="#{global.modify-date}">Modificado En</span></th>
+                            <th data-field="description" data-sortable="true"><span th:text="#{global.description}">Descripción</span>
+                            </th>
+                            <th data-field="create-date" data-sortable="true"><span th:text="#{global.create-date}">Creado En</span>
+                            </th>
+                            <th data-field="modify-date" data-sortable="true"><span th:text="#{global.modify-date}">Modificado En</span>
+                            </th>
                             <th><span th:text="#{global.action}">Acción</span></th>
                         </tr>
                         </thead>
@@ -72,8 +76,7 @@
                                     <i class="fa fa-edit"></i>
                                 </a>
                                 <a type="button" class="btn btn-sm btn-danger" data-toggle="modal"
-                                   data-target="#deleteConfirmationModal" th:attr="data-object_id=${warehouse.id}"
-                                   data-title_modal="Eliminar Almacén" data-message_modal="Esta seguro que desea eliminar el almacén.">
+                                   data-target="#deleteConfirmationModal" th:attr="data-object_id=${warehouse.id}">
                                     <i class="fa fa-trash"></i>
                                 </a>
                             </td>
@@ -85,7 +88,11 @@
         </div>
     </div><!--/.row-->
 
-    <div th:replace="templates/fragments/delete_confirmation_modal :: delete_confirmation_modal"/>
+    <div th:replace="templates/fragments/delete_confirmation_modal :: delete_confirmation_modal(
+        urlAction = '/inventario/almacenes/eliminar',
+        titleModal = 'Eliminar Almacén',
+        messageModal = 'Esta seguro que desea eliminar el almacén.'
+    )"/>
 
 </div><!--/.main-->
 </body>
