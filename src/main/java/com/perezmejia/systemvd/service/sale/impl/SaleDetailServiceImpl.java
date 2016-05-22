@@ -7,6 +7,7 @@ import com.perezmejia.systemvd.view.sale.SaleDetailView;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Collection;
 import java.util.List;
 
 /**
@@ -40,5 +41,11 @@ public class SaleDetailServiceImpl implements SaleDetailService {
     @Override
     public void delete(Long id) {
 
+    }
+
+    @Override
+    public void save(List<SaleDetailView> collection) {
+        List<SaleDetail> saleDetails = new SaleDetailView().convertDomainList(collection);
+        saleDetailRepository.save(saleDetails);
     }
 }

@@ -52,6 +52,7 @@
 
         <div class="row">
             <div class="col-lg-12">
+
                 <input type="hidden" th:field="*{id}"/>
                 <input type="hidden" th:field="*{client.id}"/>
                 <input type="hidden" th:field="*{user.id}"/>
@@ -212,7 +213,7 @@
             <div class="col-md-6 pull-right">
                 <div class="panel panel-default">
                     <div class="panel-body">
-
+                        <b><span th:text="#{global.total}"></span>: <span th:text="*{totalSale}"></span></b>
                     </div>
                 </div>
             </div>

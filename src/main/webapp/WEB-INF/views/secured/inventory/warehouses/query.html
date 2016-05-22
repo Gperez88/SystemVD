@@ -46,14 +46,10 @@
                         <thead>
                         <tr>
                             <th></th>
-                            <th data-field="id" data-sortable="true"><span th:text="#{global.id}">ID</span></th>
-                            <th data-field="name" data-sortable="true"><span th:text="#{global.name}">Nombre</span></th>
-                            <th data-field="description" data-sortable="true"><span th:text="#{global.description}">Descripción</span>
-                            </th>
-                            <th data-field="create-date" data-sortable="true"><span th:text="#{global.create-date}">Creado En</span>
-                            </th>
-                            <th data-field="modify-date" data-sortable="true"><span th:text="#{global.modify-date}">Modificado En</span>
-                            </th>
+                            <th><span th:text="#{global.name}">Nombre</span></th>
+                            <th><span th:text="#{global.description}">Descripción</span></th>
+                            <th><span th:text="#{global.create-date}">Creado En</span></th>
+                            <th><span th:text="#{global.modify-date}">Modificado En</span></th>
                             <th><span th:text="#{global.action}">Acción</span></th>
                         </tr>
                         </thead>
@@ -65,7 +61,6 @@
                                     <i class="fa fa-chevron-right"></i>
                                 </a>
                             </td>
-                            <td th:text="${warehouse.id}"></td>
                             <td th:text="${warehouse.name}"></td>
                             <td th:text="${warehouse.description}"></td>
                             <td th:text="${#calendars.format(warehouse.createDate,'dd/MM/yyyy hh:mm a')}"></td>

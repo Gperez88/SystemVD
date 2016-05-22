@@ -3,6 +3,7 @@ package com.perezmejia.systemvd.entity.sale;
 import com.perezmejia.systemvd.entity.Client;
 import com.perezmejia.systemvd.entity.security.User;
 import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.IndexColumn;
 import org.hibernate.annotations.UpdateTimestamp;
 
 import javax.persistence.*;
@@ -76,7 +77,7 @@ public class Sale {
         this.modifyDate = modifyDate;
     }
 
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "sale")
+    @OneToMany(cascade = {CascadeType.ALL}, fetch = FetchType.LAZY, mappedBy = "sale")
     public List<SaleDetail> getDetails() {
         return details;
     }

@@ -5,6 +5,7 @@ import com.gp89developers.mapperobject.Mapping;
 import com.gp89developers.mapperobject.ParsableObject;
 import com.gp89developers.mapperobject.utils.CollectionUtils;
 import com.perezmejia.systemvd.entity.sale.Sale;
+import com.perezmejia.systemvd.entity.sale.SaleDetail;
 import com.perezmejia.systemvd.view.ClientView;
 import com.perezmejia.systemvd.view.security.UserView;
 
@@ -31,6 +32,8 @@ public class SaleView extends ParsableObject<Sale, SaleView> {
     private Timestamp modifyDate;
     //manual mapping
     private List<SaleDetailView> details;
+
+    private float totalSale;
 
     public SaleView() {
         this.details = new ArrayList<>();
@@ -88,6 +91,18 @@ public class SaleView extends ParsableObject<Sale, SaleView> {
         this.details = details;
     }
 
+    public float getTotalSale() {
+        totalSale = 0.0f;
+
+        if (!CollectionUtils.isEmpty(getDetails())) {
+            getDetails().forEach(saleDetailView -> {
+                totalSale += saleDetailView.getTotalPrice();
+            });
+        }
+
+        return totalSale;
+    }
+
     @Override
     public SaleView load(Sale sale) {
         SaleView saleView = super.load(sale);
@@ -99,6 +114,19 @@ public class SaleView extends ParsableObject<Sale, SaleView> {
         }
 
         return saleView;
+    }
+
+    @Override
+    public Sale parse() {
+        Sale sale = super.parse();
+
+        if (!CollectionUtils.isEmpty(details)) {
+            List<SaleDetail> details = new ArrayList<>();
+            this.details.forEach(saleDetailView -> details.add(saleDetailView.parse()));
+            sale.setDetails(details);
+        }
+
+        return sale;
     }
 
     @Override
