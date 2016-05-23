@@ -43,7 +43,7 @@ public class Client {
     }
 
     @Basic
-    @Column(name = "create_date")
+    @Column(name = "create_date", nullable = false, updatable=false)
     @CreationTimestamp
     public Timestamp getCreateDate() {
         return createDate;

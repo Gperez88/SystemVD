@@ -21,9 +21,6 @@ public class SaleServiceImpl implements SaleService {
     @Autowired
     private SaleRepository saleRepository;
 
-    @Autowired
-    private SaleDetailService saleDetailService;
-
     @Override
     public List<SaleView> findAll() {
         List<Sale> sales = (List<Sale>) saleRepository.findAll();
@@ -49,5 +46,10 @@ public class SaleServiceImpl implements SaleService {
     @Override
     public void delete(Long id) {
         saleRepository.delete(id);
+    }
+
+    @Override
+    public long count() {
+        return saleRepository.count();
     }
 }

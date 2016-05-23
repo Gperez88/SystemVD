@@ -40,4 +40,9 @@ public class WarehouseServiceImpl implements WarehouseService {
     public void delete(Long id) {
         warehouseRepository.delete(id);
     }
+
+    @Override
+    public long count() {
+        return warehouseRepository.count();
+    }
 }

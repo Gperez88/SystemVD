@@ -52,4 +52,9 @@ public class ClientServiceImpl implements ClientService {
     public ClientView findClientByName(String name) {
         return new ClientView(clientRepository.findClientByName(name));
     }
+
+    @Override
+    public long count() {
+        return clientRepository.count();
+    }
 }

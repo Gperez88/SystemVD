@@ -41,4 +41,9 @@ public class WarehouseDetailServiceImpl implements WarehouseDetailService {
     public void delete(Long id) {
         warehouseDetailRepository.delete(id);
     }
+
+    @Override
+    public long count() {
+        return warehouseDetailRepository.count();
+    }
 }

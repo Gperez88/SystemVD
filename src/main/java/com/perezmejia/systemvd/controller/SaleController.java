@@ -161,7 +161,7 @@ public class SaleController {
         return QUERY_VIEW_PATH;
     }
 
-    @Script("/static/js/views/sale/query.js")
+    @Script("/static/js/views/sale/sell.js")
     @RequestMapping(value = SHORT_SALE_PATH, method = RequestMethod.GET)
     public String shortSale(Model model, @RequestParam(value = "id", required = true) Long id) {
         SaleView sale = saleService.findById(id);

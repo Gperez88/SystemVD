@@ -40,12 +40,18 @@ public class SaleDetailServiceImpl implements SaleDetailService {
 
     @Override
     public void delete(Long id) {
-
+        saleDetailRepository.delete(id);
     }
+
 
     @Override
     public void save(List<SaleDetailView> collection) {
         List<SaleDetail> saleDetails = new SaleDetailView().convertDomainList(collection);
         saleDetailRepository.save(saleDetails);
+    }
+
+    @Override
+    public long count() {
+        return saleDetailRepository.count();
     }
 }

@@ -11,4 +11,5 @@ public interface BaseService<T> {
     public T findById(Long id);
     public void save(T t);
     public void delete(Long id);
+    public long count();
 }
